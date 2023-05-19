@@ -1,3 +1,4 @@
-export default function TrialPage() {
-  return <div>feedback</div>;
+"use client";
+export default function FeedBackPage() {
+  return <div>FeedBack</div>;
 }
