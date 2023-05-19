@@ -11,7 +11,7 @@ import {
   IconButton,
   Link,
   Stack,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -26,12 +26,19 @@ export default function LandingLayout(props: Props) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box h="100%" w="100%">
       <DesktopNav onToggle={onToggle} />
 
       <MobileNav isOpen={isOpen} onToggle={onToggle} />
 
-      <Container maxW="100vw">{children}</Container>
+      <Container
+        h="calc(100% - 60px)"
+        minW="100%"
+        bg="gray.100"
+        overflow="auto"
+      >
+        {children}
+      </Container>
     </Box>
   );
 }
@@ -95,8 +102,9 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
       borderRadius="4px"
       {...(isActive
         ? {
-            bg: "nav.activeBackground",
-            color: "nav.activeColor",
+            bg: "red.500",
+            color: "white",
+            fontWeight: "semibold",
             _hover: { textDecoration: "none" },
           }
         : {
@@ -154,8 +162,9 @@ const MobileNavItem = ({ label, href }: NavItem) => {
       borderRadius="4px"
       {...(isActive
         ? {
-            bg: "nav.activeBackground",
-            color: "nav.activeColor",
+            bg: "red.500",
+            color: "white",
+            fontWeight: "semibold",
             _hover: { textDecoration: "none" },
           }
         : {
