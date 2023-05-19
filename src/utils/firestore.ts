@@ -10,15 +10,15 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUniImLaPkcurFGJPiSfdVorwaph2WRp8",
-  authDomain: "vus-vjoy.firebaseapp.com",
-  projectId: "vus-vjoy",
-  storageBucket: "vus-vjoy.appspot.com",
-  messagingSenderId: "101647183745",
-  appId: "1:101647183745:web:9f05f840ceffdaa621c280",
-  measurementId: "G-QVY7XM5V8H",
+  apiKey: process.env.FIRESTORE_APIKEY,
+  authDomain: process.env.FIRESTORE_AUTHDOMAIN,
+  projectId: process.env.FIRESTORE_PROJECTID,
+  storageBucket: process.env.FIRESTORE_STORAGEBUCKET,
+  messagingSenderId: process.env.FIRESTORE_MESSAGINGSENDERID,
+  appId: process.env.FIRESTORE_APPID,
+  measurementId: process.env.FIRESTORE_MEASUREMENTID,
 };
-
+const collection_path = process.env.FIRESTORE_PATH;
 // Initialize Firebase
 const firebase_app = initializeApp(firebaseConfig);
 const db = getFirestore(firebase_app);
@@ -30,7 +30,11 @@ export async function addData(colllectionName: CollectionName, data: any) {
   let error = null;
 
   try {
-    result = await addDoc(collection(db, colllectionName), data);
+    const docRef = await addDoc(
+      collection(db, collection_path + colllectionName),
+      data
+    );
+    result = docRef.id;
   } catch (e) {}
 
   return { result, error };
@@ -41,7 +45,15 @@ export async function getDouments(colllectionName: CollectionName) {
   let error = null;
 
   try {
-    result = await getDocs(collection(db, colllectionName));
+    const querySnapshot = await getDocs(
+      collection(db, collection_path + colllectionName)
+    );
+    result = querySnapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        data: doc.data(),
+      };
+    });
   } catch (e) {
     error = e;
   }
@@ -53,13 +65,14 @@ export async function getDoument(
   collectionName: CollectionName,
   docId: string
 ) {
-  let docRef = doc(db, collectionName, docId);
+  let docRef = doc(db, collection_path + collectionName, docId);
 
   let result = null;
   let error = null;
 
   try {
-    result = await getDoc(docRef);
+    const doc = await getDoc(docRef);
+    result = doc.data();
   } catch (e) {
     error = e;
   }
@@ -72,7 +85,7 @@ export async function updateDoument(
   docId: string,
   data: any
 ) {
-  let docRef = doc(db, collectionName, docId);
+  let docRef = doc(db, collection_path + collectionName, docId);
 
   let result = null;
   let error = null;
