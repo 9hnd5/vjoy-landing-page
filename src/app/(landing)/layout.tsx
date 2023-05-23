@@ -75,7 +75,14 @@ const DesktopNav = (props: DesktopNavProps) => {
         flex={{ base: 1 }}
         justify={{ base: "flex-end", sm: "space-between" }}
       >
-        <Image width={120} height={120} alt="Logo" src="/logo.svg" />
+        <Image
+          width={100}
+          height={100}
+          style={{ width: "120px" }}
+          alt="Logo"
+          src="/logo.svg"
+          priority
+        />
 
         <Stack
           direction="row"
