@@ -1,8 +1,5 @@
 "use client";
-import { PhoneIcon, EmailIcon, Icon } from "@chakra-ui/icons";
-import { AiOutlineUser } from "react-icons/ai";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { MdOutlineLocationCity } from "react-icons/md";
+import { EmailIcon, Icon, PhoneIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -16,8 +13,13 @@ import {
   InputLeftElement,
   Textarea,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { AiOutlineUser } from "react-icons/ai";
+import { MdOutlineLocationCity } from "react-icons/md";
 
 type FormType = {
   parent: string;
@@ -28,14 +30,31 @@ type FormType = {
 };
 
 export default function FeedbackForm() {
+  const toast = useToast();
   const {
     register,
     formState: { errors },
     handleSubmit: onSubmit,
   } = useForm<FormType>();
 
+  const { mutate, isLoading } = useMutation({
+    mutationFn: (data: any) => {
+      return axios.post("api/trial", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Record Created",
+        description: "We've created trial",
+        status: "success",
+        duration: 9000,
+        position: "top-right",
+        isClosable: true,
+      });
+    },
+  });
+
   const handleSubmit: SubmitHandler<FormType> = (data) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
@@ -104,7 +123,12 @@ export default function FeedbackForm() {
             <FormLabel>Mong Muốn</FormLabel>
             <Textarea />
           </FormControl>
-          <Button w="100%" colorScheme="red" onClick={onSubmit(handleSubmit)}>
+          <Button
+            w="100%"
+            colorScheme="red"
+            onClick={onSubmit(handleSubmit)}
+            isLoading={isLoading}
+          >
             Trải Ngiệm Ngay
           </Button>
         </VStack>

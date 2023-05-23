@@ -23,9 +23,9 @@ const collection_path = process.env.FIRESTORE_PATH;
 const firebase_app = initializeApp(firebaseConfig);
 const db = getFirestore(firebase_app);
 
-type CollectionName = "users" | "faq" | "feedback";
+type CollectionName = "users" | "faq" | "feedback" | 'trial';
 
-export async function addData(colllectionName: CollectionName, data: any) {
+export async function addDocument(colllectionName: CollectionName, data: any) {
   let result = null;
   let error = null;
 
