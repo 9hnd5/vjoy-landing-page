@@ -18,12 +18,33 @@ import { usePathname } from "next/navigation";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import * as gtag from "@/utils/gtag";
+
 type Props = {
   children?: React.ReactNode;
 };
 export default function LandingLayout(props: Props) {
   const { children } = props;
   const { isOpen, onToggle } = useDisclosure();
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <Box h="100%" w="100%">
