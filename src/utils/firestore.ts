@@ -23,7 +23,7 @@ const collection_path = process.env.FIRESTORE_PATH;
 const firebase_app = initializeApp(firebaseConfig);
 const db = getFirestore(firebase_app);
 
-type CollectionName = "users" | "faq" | "feedback" | 'trial';
+type CollectionName = "users" | "faq" | "feedback" | "trials";
 
 export async function addDocument(colllectionName: CollectionName, data: any) {
   let result = null;
@@ -40,7 +40,7 @@ export async function addDocument(colllectionName: CollectionName, data: any) {
   return { result, error };
 }
 
-export async function getDouments(colllectionName: CollectionName) {
+export async function getDocuments(colllectionName: CollectionName) {
   let result = null;
   let error = null;
 
@@ -61,7 +61,7 @@ export async function getDouments(colllectionName: CollectionName) {
   return { result, error };
 }
 
-export async function getDoument(
+export async function getDocument(
   collectionName: CollectionName,
   docId: string
 ) {
@@ -80,7 +80,7 @@ export async function getDoument(
   return { result, error };
 }
 
-export async function updateDoument(
+export async function updateDocument(
   collectionName: CollectionName,
   docId: string,
   data: any

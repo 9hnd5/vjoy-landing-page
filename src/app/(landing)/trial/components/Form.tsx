@@ -20,6 +20,7 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineLocationCity } from "react-icons/md";
+import * as gtag from "@/utils/gtag";
 
 type FormType = {
   parent: string;
@@ -39,6 +40,12 @@ export default function FeedbackForm() {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (data: any) => {
+      gtag.event({
+        action: "submit",
+        category: "survey",
+        label: "trial",
+        value: 1,
+      });
       return axios.post("api/trial", data);
     },
     onSuccess: () => {
