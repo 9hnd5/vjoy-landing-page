@@ -14,10 +14,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import Head from "next/head";
 import { usePathname } from "next/navigation";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
+import { useEffect } from "react";
+import * as gtag from "@/utils/gtag";
 
 type Props = {
   children?: React.ReactNode;
@@ -26,7 +29,37 @@ export default function LandingLayout(props: Props) {
   const { children } = props;
   const { isOpen, onToggle } = useDisclosure();
 
+  const pathname = usePathname();
+  
+  console.log("pathname", pathname);
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    handleRouteChange
+  }, [pathname])
+
   return (
+    <>
+    <Head>
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        />
+        {/* <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        /> */}
+      </Head>
     <Box h="100%" w="100%">
       <DesktopNav onToggle={onToggle} />
 
@@ -37,10 +70,11 @@ export default function LandingLayout(props: Props) {
         minW="100%"
         bg="gray.100"
         overflow="auto"
-      >
+        >
         {children}
       </Container>
     </Box>
+</>
   );
 }
 type DesktopNavProps = {
