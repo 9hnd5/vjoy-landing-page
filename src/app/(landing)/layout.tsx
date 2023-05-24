@@ -16,8 +16,10 @@ import {
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+import * as gtag from "@/utils/gtag";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
+import { useEffect } from "react";
 
 type Props = {
   children?: React.ReactNode;
@@ -25,6 +27,15 @@ type Props = {
 export default function LandingLayout(props: Props) {
   const { children } = props;
   const { isOpen, onToggle } = useDisclosure();
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    handleRouteChange(pathname);
+  }, [pathname]);
 
   return (
     <Box h="100%" w="100%">
