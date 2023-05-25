@@ -22,18 +22,18 @@ export default function RootLayout({
         style={{ height: "100%", width: "100%" }}
       >
         <Script
-          id="gtag"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <Script
-          id="use-gtag"
-          strategy="beforeInteractive"
+          id="gtag"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
           `,
           }}
         />
