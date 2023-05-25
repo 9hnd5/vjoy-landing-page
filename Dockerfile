@@ -8,10 +8,11 @@ RUN yarn --frozen-lockfile
 
 
 FROM base AS builder
+ARG env
 WORKDIR /app
-
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY .env.${env} .env.production
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
