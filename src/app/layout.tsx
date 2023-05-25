@@ -22,12 +22,13 @@ export default function RootLayout({
         style={{ height: "100%", width: "100%" }}
       >
         <Script
-          async
+          id="gtag"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          strategy="beforeInteractive"
         />
         <Script
-          id="gtag"
-          strategy="lazyOnload"
+          id="use-gtag"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
