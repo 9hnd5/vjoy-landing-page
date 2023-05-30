@@ -40,6 +40,37 @@ const colors = {
     activeColor: "white",
     activeBackground: "#ba141a",
   },
+  brandCyan: {
+    600: "#029ED8",
+    500: "#03CBFC",
+    100: "#CCFEF9",
+  },
+  brandGray: {
+    900: "#101828",
+    500: "#667085",
+    100: "#F2F4F7",
+    50: "#F9FAFB",
+  },
+  brandGreen: {
+    600: "#3CC155",
+    500: "#A0F698",
+    100: "#E6FDDD",
+  },
+  brandOrange: {
+    600: "#FC7006",
+    500: "#FF860D",
+    400: "#FFA334",
+    100: "#FFF1D3",
+  },
+  brandPink: {
+    600: "#D85E85",
+    400: "#FDA0AC",
+    100: "#FFDCE4",
+  },
+  brandPurple: {
+    700: "#641DEC",
+    600: "#6D27FF",
+  },
 };
 
 export const theme = extendTheme({ colors });
