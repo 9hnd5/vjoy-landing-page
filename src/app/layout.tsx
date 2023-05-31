@@ -68,12 +68,12 @@ export default function RootLayout({
           }}
         />
         <Providers>
-          <Box h="100%" w="full">
+          <Box w="full">
             <DesktopNav onToggle={onToggle} />
 
             <MobileNav isOpen={isOpen} onToggle={onToggle} />
 
-            <Container minW="100%" bg="gray.100" overflow="auto">
+            <Container minW="100%" bg="gray.100" overflow="auto" m={0} p={0}>
               {children}
             </Container>
 
@@ -267,12 +267,14 @@ const Footer = () => {
         w="full"
         maxW="1280px"
         direction={{ base: "column", sm: "row" }}
-        p={10}
+        py={10}
       >
-        <VUS_Info />
+        <Box w={{ base: "full", sm: "42%" }} px={{ base: 8, sm: 0 }}>
+          <VUS_Info />
+        </Box>
         <Spacer />
         <Flex
-          px={{ base: 2, sm: 6 }}
+          px={{ base: 8, sm: 0 }}
           py={{ base: 6, sm: 10 }}
           direction="column"
           color="white"
@@ -295,7 +297,7 @@ const Footer = () => {
         </Flex>
         <Spacer />
         <Flex
-          px={{ base: 2, sm: 6 }}
+          px={{ base: 8, sm: 0 }}
           py={{ base: 6, sm: 10 }}
           direction="column"
           color="white"
@@ -322,12 +324,7 @@ const Footer = () => {
 };
 const VUS_Info = () => {
   return (
-    <Flex
-      px={{ base: 2, sm: 6 }}
-      py={{ base: 6, sm: 10 }}
-      w={{ base: "full", sm: "42%" }}
-      direction="column"
-    >
+    <Flex py={{ base: 6, sm: 10 }} w="full" direction="column">
       <Image width={200} height={200} alt="Logo" src="/logo.svg" priority />
       <Text color="white" fontSize={{ base: "xs", sm: "sm" }} mt={4}>
         © CÔNG TY CỔ PHẦN QUỐC TẾ ANH VĂN HỘI VIỆT MỸ

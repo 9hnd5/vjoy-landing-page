@@ -1,12 +1,9 @@
 "use client";
 
-export default function Hero({ docs }: any) {
+import { Box } from "@chakra-ui/react";
+
+export default function Hero() {
   return (
-    <div>
-      <h1>Home page</h1>
-      {docs.map((doc: any) => (
-        <p key={doc.id}>{doc.id}</p>
-      ))}
-    </div>
+    <Box w="full" h="calc(100vh - 60px)">Hero</Box>
   );
 }
