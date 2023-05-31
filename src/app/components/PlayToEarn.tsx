@@ -146,6 +146,7 @@ export default function PlayToEarn() {
             sm: "row-reverse",
           }}
           ml="auto"
+          mt={-10}
           px={10}
           roundedTopLeft={{ base: 0, sm: "300px" }}
           roundedBottomLeft={{ base: "200px", sm: "300px" }}
