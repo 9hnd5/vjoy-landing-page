@@ -26,14 +26,20 @@ type FormType = {
   location: string;
   expect: string;
 };
-
+const defaultValues = {
+  parent: "",
+  phone: "",
+  location: "",
+  expect: "",
+};
 export default function SignupForm() {
   const toast = useToast();
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit: onSubmit,
-  } = useForm<FormType>();
+  } = useForm<FormType>({ defaultValues });
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (data: any) => {
@@ -59,6 +65,7 @@ export default function SignupForm() {
       value: 1,
     });
     mutate(data);
+    reset(defaultValues, { keepDefaultValues: true });
   };
 
   return (
