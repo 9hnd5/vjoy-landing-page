@@ -100,6 +100,7 @@ const DesktopNav = (props: DesktopNavProps) => {
       borderStyle="solid"
       borderColor="gray.200"
       align="center"
+      bg="brandPurple.600"
     >
       <Flex flex={{ base: 1 }} justify="space-between">
         <Image
@@ -144,12 +145,12 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
       borderRadius="4px"
       {...(isActive
         ? {
-            bg: "red.500",
             color: "white",
-            fontWeight: "semibold",
+            // fontWeight: "semibold",
             _hover: { textDecoration: "none" },
           }
         : {
+            color: "white",
             _hover: { textDecoration: "none" },
           })}
     >
