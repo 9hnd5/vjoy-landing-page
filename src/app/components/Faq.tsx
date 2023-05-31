@@ -34,12 +34,12 @@ export default function Faq(props: Props) {
 
   return (
     <Grid templateColumns="repeat(2, 1fr)">
-      <GridItem>
+      <GridItem colSpan={{ base: 2, sm: 1 }}>
         <Center>
           <Image width={400} height={400} src="/kid.png" priority alt="kid" />
         </Center>
       </GridItem>
-      <GridItem>
+      <GridItem colSpan={{ base: 2, sm: 1 }}>
         <VStack>
           <Box w="100%">
             <Accordion allowMultiple>
