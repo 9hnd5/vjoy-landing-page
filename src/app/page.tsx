@@ -1,5 +1,8 @@
 import { getDocuments } from "@/utils/firestore";
 import Faq from "./components/Faq";
+import SignupForm from "./components/SignupForm";
+import Hero from "./components/Hero";
+import PlayToEarn from "./components/PlayToEarn";
 import PlayToLearn, { PlayToLearnItem } from "./components/PlayToLearn";
 export const revalidate = 0;
 
@@ -15,6 +18,8 @@ export default async function Page() {
     <>
       {/* <Hero /> */}
       <PlayToLearn items={PLAY_TO_LEARNS} />
+      <PlayToEarn />
+      <SignupForm />
       <Faq result={faqs} />
     </>
   );

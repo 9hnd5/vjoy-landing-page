@@ -1,13 +1,10 @@
 "use client";
-import { getDocuments } from "@/utils/firestore";
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
   Box,
-  Card,
-  CardBody,
   Center,
   Flex,
   Grid,
@@ -36,70 +33,58 @@ export default function Faq(props: Props) {
   const { result } = props;
 
   return (
-    // <Card>
-    //   <CardBody>
-        <Grid templateColumns="repeat(2, 1fr)">
-          <GridItem>
-            <Center>
-              <Image
-                width={400}
-                height={400}
-                src="/kid.png"
-                priority
-                alt="kid"
-              />
-            </Center>
-          </GridItem>
-          <GridItem>
-            <VStack>
-              <Box w="100%">
-                <Accordion allowMultiple>
-                  <Heading ml={3} mb={3}>
-                    Câu hỏi thường gặp
-                  </Heading>
-                  {result?.map((item: any) => (
-                    <AccordionItem key={item.id}>
-                      {({ isExpanded }) => (
-                        <>
-                          <h2>
-                            <AccordionButton>
-                              <Box as="span" flex="1" textAlign="left">
-                                <Heading fontSize="md">
-                                  {item.data.question}
-                                </Heading>
-                              </Box>
-                              {isExpanded ? (
-                                <Icon
-                                  fontSize={20}
-                                  as={AiFillMinusCircle}
-                                  color="#FC7006"
-                                />
-                              ) : (
-                                <Icon
-                                  fontSize={20}
-                                  as={AiFillPlusCircle}
-                                  color="#FC7006"
-                                />
-                              )}
-                            </AccordionButton>
-                          </h2>
-                          <AccordionPanel pb={4}>
-                            {item.data.anwser}
-                          </AccordionPanel>
-                        </>
-                      )}
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </Box>
-              <Box w="100%">
-                <CustomButton />
-              </Box>
-            </VStack>
-          </GridItem>
-        </Grid>
-    //   </CardBody>
-    // </Card>
+    <Grid templateColumns="repeat(2, 1fr)">
+      <GridItem>
+        <Center>
+          <Image width={400} height={400} src="/kid.png" priority alt="kid" />
+        </Center>
+      </GridItem>
+      <GridItem>
+        <VStack>
+          <Box w="100%">
+            <Accordion allowMultiple>
+              <Heading ml={3} mb={3}>
+                Câu hỏi thường gặp
+              </Heading>
+              {result?.map((item: any) => (
+                <AccordionItem key={item.id}>
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton>
+                          <Box as="span" flex="1" textAlign="left">
+                            <Heading fontSize="md">
+                              {item.data.question}
+                            </Heading>
+                          </Box>
+                          {isExpanded ? (
+                            <Icon
+                              fontSize={20}
+                              as={AiFillMinusCircle}
+                              color="#FC7006"
+                            />
+                          ) : (
+                            <Icon
+                              fontSize={20}
+                              as={AiFillPlusCircle}
+                              color="#FC7006"
+                            />
+                          )}
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>{item.data.anwser}</AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Box>
+          <Box w="100%">
+            <CustomButton />
+          </Box>
+        </VStack>
+      </GridItem>
+    </Grid>
   );
 }
 
@@ -131,8 +116,8 @@ const CustomButton = () => {
       }}
     >
       <Flex justifyContent="space-between" px={2}>
-        <Text color="#6D27FF">Phụ huynh góp ý</Text>
-        <Icon as={FaArrowRight} color="#6D27FF" />
+        <Text color="brandPurple.600">Phụ huynh góp ý</Text>
+        <Icon as={FaArrowRight} color="brandPurple.600" />
       </Flex>
     </Box>
   );

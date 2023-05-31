@@ -1,36 +1,33 @@
 "use client";
 import * as gtag from "@/utils/gtag";
-import { EmailIcon, Icon, PhoneIcon } from "@chakra-ui/icons";
+import { Icon, PhoneIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
-  Card,
-  CardBody,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Heading,
   Input,
   InputGroup,
   InputLeftElement,
-  Textarea,
   VStack,
   useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { AiOutlineUser } from "react-icons/ai";
-import { MdOutlineLocationCity } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+import { HiLocationMarker } from "react-icons/hi";
 
 type FormType = {
   parent: string;
-  email?: string;
   phone: string;
   location: string;
   expect: string;
 };
 
-export default function FeedbackForm() {
+export default function SignupForm() {
   const toast = useToast();
   const {
     register,
@@ -40,7 +37,7 @@ export default function FeedbackForm() {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (data: any) => {
-      return axios.post("api/trial", data);
+      return axios.post("api/signup", data);
     },
     onSuccess: () => {
       toast({
@@ -65,19 +62,43 @@ export default function FeedbackForm() {
   };
 
   return (
-    <Card>
-      <CardBody>
-        <VStack>
+    <Box w="full" px={{ base: 0, sm: 10 }} py={20}>
+      <Box
+        w="full"
+        h="500px"
+        rounded={{ base: 0, sm: "40px" }}
+        overflow="hidden"
+        pos="relative"
+      >
+        <Image src="/pexels-photo.jpeg" alt="Logo" fill />
+      </Box>
+      <Box
+        w="calc(100vw - 40px)"
+        maxW="md"
+        backdropFilter="auto"
+        backdropBlur="80px"
+        backdropBrightness={1.5}
+        ml={{ base: 5, sm: 20 }}
+        mt={-80}
+        px={8}
+        py={12}
+        rounded={"40px"}
+      >
+        <VStack spacing={5}>
           <FormControl>
-            <Heading fontSize="4xl">Trải Nghiệm Thử</Heading>
+            <Heading fontSize="3xl">
+              Ba mẹ ơi! Nhanh tay Đăng ký trải nghiệm cho con nhé!
+            </Heading>
           </FormControl>
           <FormControl isRequired isInvalid={!!errors.parent}>
-            <FormLabel>Họ Tên Phụ Huynh</FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={AiOutlineUser} color="gray.300" />
+                <Icon as={FaUserCircle} color="brandGray.400" />
               </InputLeftElement>
               <Input
+                placeholder="Họ và tên phụ huynh"
+                bg="white"
+                color="brandGray.500"
                 {...register("parent", { required: "Không được bỏ trống" })}
               />
             </InputGroup>
@@ -86,23 +107,15 @@ export default function FeedbackForm() {
             </FormErrorMessage>
           </FormControl>
 
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <EmailIcon color="gray.300" />
-              </InputLeftElement>
-              <Input type="email" {...register("email")} />
-            </InputGroup>
-          </FormControl>
-
           <FormControl isRequired isInvalid={!!errors.phone}>
-            <FormLabel>Số Điện Thoại</FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <PhoneIcon color="gray.300" />
+                <PhoneIcon color="brandGray.400" />
               </InputLeftElement>
               <Input
+                placeholder="Số điện thoại"
+                bg="white"
+                color="brandGray.500"
                 {...register("phone", { required: "Không được bỏ trống" })}
               />
             </InputGroup>
@@ -112,12 +125,14 @@ export default function FeedbackForm() {
           </FormControl>
 
           <FormControl isRequired isInvalid={!!errors.location}>
-            <FormLabel>Tỉnh / Thành Phố</FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={MdOutlineLocationCity} color="gray.300" />
+                <Icon as={HiLocationMarker} color="brandGray.400" />
               </InputLeftElement>
               <Input
+                placeholder="Địa chỉ"
+                bg="white"
+                color="brandGray.500"
                 {...register("location", { required: "Không được bỏ trống" })}
               />
             </InputGroup>
@@ -126,20 +141,17 @@ export default function FeedbackForm() {
             </FormErrorMessage>
           </FormControl>
 
-          <FormControl>
-            <FormLabel>Mong Muốn</FormLabel>
-            <Textarea />
-          </FormControl>
           <Button
             w="100%"
-            colorScheme="red"
+            bg="brandPurple.600"
+            color="white"
             onClick={onSubmit(handleSubmit)}
             isLoading={isLoading}
           >
             Trải Ngiệm Ngay
           </Button>
         </VStack>
-      </CardBody>
-    </Card>
+      </Box>
+    </Box>
   );
 }
