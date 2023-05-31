@@ -73,7 +73,7 @@ export default function RootLayout({
 
             <MobileNav isOpen={isOpen} onToggle={onToggle} />
 
-            <Container minW="100%" bg="gray.100" overflow="auto" m={0} p={0}>
+            <Container minW="100%" bg="white" overflow="auto" m={0} p={0}>
               {children}
             </Container>
 

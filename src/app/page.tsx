@@ -1,5 +1,5 @@
-import Hero from "./components/Hero";
-import PlayToEarn from "./components/PlayToEarn";
+import { getDocuments } from "@/utils/firestore";
+import Faq from "./components/Faq";
 import PlayToLearn, { PlayToLearnItem } from "./components/PlayToLearn";
 export const revalidate = 0;
 
@@ -9,11 +9,13 @@ export const metadata = {
 };
 
 export default async function Page() {
+  const { result: faqs } = await getDocuments("faq");
+
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <PlayToLearn items={PLAY_TO_LEARNS} />
-      <PlayToEarn />
+      <Faq result={faqs} />
     </>
   );
 }
