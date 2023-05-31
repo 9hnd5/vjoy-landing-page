@@ -1,5 +1,6 @@
-import { getDocuments } from "@/utils/firestore";
 import Hero from "./components/Hero";
+import PlayToEarn from "./components/PlayToEarn";
+import PlayToLearn, { PlayToLearnItem } from "./components/PlayToLearn";
 export const revalidate = 0;
 
 export const metadata = {
@@ -8,7 +9,38 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const docs = await getDocuments("signups");
-
-  return <Hero docs={docs.result} />;
+  return (
+    <>
+      <Hero />
+      <PlayToLearn items={PLAY_TO_LEARNS} />
+      <PlayToEarn />
+    </>
+  );
 }
+
+const PLAY_TO_LEARNS: Array<PlayToLearnItem> = [
+  {
+    img: "/pexels-photo.jpeg",
+    bg: "brandCyan.600",
+    icon: "/logo.svg",
+    title: "Sáng tạo nhập vai chinh phục thử thách",
+    description:
+      "Chọn cho mình một nhân vật đại diện và người bạn đồng hành siêu dễ thương, con và bạn của mình sẽ cùng lớn khôn thật vui trên bản đồ các hành tinh V-World và hành trình chinh phục Anh ngữ.",
+  },
+  {
+    img: "/pexels-photo.jpeg",
+    bg: "brandOrange.500",
+    icon: "/logo.svg",
+    title: "Kho trò chơi hấp dẫn, cá nhân hoá theo từng trình độ",
+    description:
+      "3 hành tinh, 48 hòn đảo diệu kỳ, 960 hoạt động trò chơi, 1234 hoạt động học tập được lồng ghép, con tự do phiêu lưu & khám phá theo năng lực của bản thân và tăng cường khả năng phản xạ, tiến bộ tiếng Anh mỗi ngày.",
+  },
+  {
+    img: "/pexels-photo.jpeg",
+    bg: "brandGreen.600",
+    icon: "/logo.svg",
+    title: "Thử thách bản thân, ghi tên mình trên Bảng Xếp Hạng",
+    description:
+      "Các Sàn đấu thử thách mỗi ngày và mỗi tuần kích thích giúp con ôn luyện lại các nội dung đã học cũng như tạo động lực học tiếng Anh cho trẻ khi con nỗ lực ghi dấu ấn cùng bạn bè khắp nơi.",
+  },
+];
