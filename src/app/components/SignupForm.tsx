@@ -69,7 +69,7 @@ export default function SignupForm() {
   };
 
   return (
-    <Box w="full" px={{ base: 0, sm: 10 }} py={20}>
+    <Box id="signup" w="full" px={{ base: 0, sm: 10 }} py={20}>
       <Box
         w="full"
         h="500px"
@@ -90,6 +90,7 @@ export default function SignupForm() {
         px={8}
         py={12}
         rounded={"40px"}
+        shadow={"lg"}
       >
         <VStack spacing={5}>
           <FormControl>
