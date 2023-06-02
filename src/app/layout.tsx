@@ -92,45 +92,45 @@ const DesktopNav = (props: DesktopNavProps) => {
   const { onToggle } = props;
 
   return (
-    <Flex
-      minH="60px"
-      py={{ base: 2 }}
-      px={{ base: 4 }}
-      borderBottom={1}
-      borderStyle="solid"
-      borderColor="gray.200"
-      align="center"
-      bg="brandPurple.600"
-    >
-      <Flex flex={{ base: 1 }} justify="space-between">
-        <Image
-          width={100}
-          height={100}
-          style={{ width: "120px" }}
-          alt="Logo"
-          src="/logo.svg"
-          priority
-        />
+    <Flex justify="space-around" bg="brandPurple.600">
+      <Flex
+        w="full"
+        maxW="1280px"
+        minH="60px"
+        py={{ base: 2 }}
+        px={{ base: 4 }}
+        align="center"
+      >
+        <Flex flex={{ base: 1 }} justify="space-between">
+          <Image
+            width={100}
+            height={100}
+            style={{ width: "120px" }}
+            alt="Logo"
+            src="/logo.svg"
+            priority
+          />
 
-        <Stack
-          direction="row"
-          wrap="wrap"
-          display={{ base: "none", sm: "flex" }}
-          justify={{ base: "unset", sm: "flex-end" }}
-        >
-          {NAV_ITEMS.map((navItem) => (
-            <DesktopNavItem key={navItem.href} {...navItem} />
-          ))}
-        </Stack>
-      </Flex>
+          <Stack
+            direction="row"
+            wrap="wrap"
+            display={{ base: "none", sm: "flex" }}
+            justify={{ base: "unset", sm: "flex-end" }}
+          >
+            {NAV_ITEMS.map((navItem) => (
+              <DesktopNavItem key={navItem.href} {...navItem} />
+            ))}
+          </Stack>
+        </Flex>
 
-      <Flex display={{ base: "flex", sm: "none" }}>
-        <IconButton
-          onClick={onToggle}
-          icon={<HamburgerIcon w={5} h={5} />}
-          variant="ghost"
-          aria-label="Toggle Navigation"
-        />
+        <Flex display={{ base: "flex", sm: "none" }}>
+          <IconButton
+            onClick={onToggle}
+            icon={<HamburgerIcon w={5} h={5} />}
+            variant="ghost"
+            aria-label="Toggle Navigation"
+          />
+        </Flex>
       </Flex>
     </Flex>
   );
@@ -143,10 +143,10 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
     <Box
       p={2}
       borderRadius="4px"
+      fontWeight="bold"
       {...(isActive
         ? {
             color: "white",
-            // fontWeight: "semibold",
             _hover: { textDecoration: "none" },
           }
         : {
@@ -173,6 +173,8 @@ const MobileNav = (props: MobileNavProps) => {
       size={{ base: "md" }}
       onClose={onToggle}
       placement="left"
+      autoFocus={false}
+      returnFocusOnClose={false}
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -249,11 +251,11 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Trải Nghiệm Thử",
-    href: "#",
+    href: "#signup",
   },
   {
     label: "Câu Hỏi Thường Gặp",
-    href: "#",
+    href: "#faq",
   },
   {
     label: "Góp Ý",

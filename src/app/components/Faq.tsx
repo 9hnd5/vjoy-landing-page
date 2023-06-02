@@ -33,7 +33,7 @@ export default function Faq(props: Props) {
   const { result } = props;
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)">
+    <Grid id="faq" templateColumns="repeat(2, 1fr)">
       <GridItem colSpan={{ base: 2, sm: 1 }}>
         <Center>
           <Image width={400} height={400} src="/kid.png" priority alt="kid" />
