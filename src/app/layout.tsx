@@ -20,14 +20,12 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Inter } from "next/font/google";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
 import { Providers } from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import { nunito } from "./font";
 
 export default function RootLayout({
   children,
@@ -48,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" style={{ height: "100%", width: "100%" }}>
       <body
-        className={inter.className}
+        className={nunito.className}
         style={{ height: "100%", width: "100%" }}
       >
         <Script
@@ -96,7 +94,7 @@ const DesktopNav = (props: DesktopNavProps) => {
       <Flex
         w="full"
         maxW="1280px"
-        minH="60px"
+        minH="80px"
         py={{ base: 2 }}
         px={{ base: 4 }}
         align="center"
@@ -107,8 +105,9 @@ const DesktopNav = (props: DesktopNavProps) => {
             height={100}
             style={{ width: "120px" }}
             alt="Logo"
-            src="/logo.svg"
+            src="/LogoVUS.png"
             priority
+            quality={100}
           />
 
           <Stack

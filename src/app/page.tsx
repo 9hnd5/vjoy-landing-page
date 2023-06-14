@@ -16,7 +16,7 @@ export default async function Page() {
 
   return (
     <>
-      {/* <Hero /> */}
+      <Hero />
       <PlayToLearn items={PLAY_TO_LEARNS} />
       <PlayToEarn />
       <SignupForm />
