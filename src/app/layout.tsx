@@ -25,7 +25,7 @@ import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
 import { Providers } from "./providers";
-import { nunito } from "./font";
+import { nunito } from "./fonts";
 
 export default function RootLayout({
   children,

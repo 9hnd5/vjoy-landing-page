@@ -12,6 +12,6 @@ export const nunito = Nunito({
 });
 
 export const svn_arco = localFont({
-  src: "./fonts/SVN-ARCO.otf",
+  src: "./SVN-ARCO.otf",
   display: "swap",
 });
