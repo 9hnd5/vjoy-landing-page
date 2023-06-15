@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  VStack,
+  css,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Image from "next/image";
 
 import React, { use } from "react";
@@ -20,11 +28,19 @@ interface PlayToLearnProps {
   items: Array<PlayToLearnItem>;
 }
 
+const styles = css({
+  "& div.slick-slide": {
+    width: "942px",
+    height: "545px",
+    margin: "0 20px",
+  },
+});
+
 export default function PlayToLearn({ items }: PlayToLearnProps) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
   const settings = {
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
     centerMode: true,
     draggable: true,
@@ -37,37 +53,43 @@ export default function PlayToLearn({ items }: PlayToLearnProps) {
       setActiveIndex(newIndex),
   };
   return (
-    <Flex w="full" justify="space-around" my={10}>
+    <Flex w="full" justify="space-around" mt="140px">
       <Flex w="full" direction="column" px={{ base: 8, sm: 0 }}>
-        <Flex
-          w="full"
-          direction="column"
-          justify="space-between"
-          align="center"
-          textAlign="center"
-        >
-          <Image width={300} height={300} alt="Logo" src="/logo.svg" priority />
-          <Heading size="lg" fontWeight="bold" my={5}>
-            Con vui học, sáng tạo trong từng hoạt động
-          </Heading>
-        </Flex>
+        <VStack w="full" spacing="24px" align="center" textAlign="center">
+          <Image
+            width={689}
+            height={251}
+            alt="Play to lear"
+            src="/desktop/PlayToLearn3x.png"
+            priority
+          />
+          <Text
+            fontWeight="900"
+            fontSize="32px"
+            lineHeight="40px"
+            letterSpacing={0.5}
+          >
+            Con vui học, sáng tạo không giới hạn
+          </Text>
+        </VStack>
         {isMobile &&
           items.map((item, index) => (
             <Item key={index} index={index} isMobile={isMobile} {...item} />
           ))}
 
         {!isMobile && (
-          <Slider {...settings}>
-            {items.map((item, index) => (
-              <Item
-                key={index}
-                index={index}
-                isMobile={isMobile}
-                activeIndex={activeIndex}
-                {...item}
-              />
+          <Box as={Slider} {...settings} mt="102px" css={styles}>
+            {items.map((_item, index) => (
+              <Box key={index} bgColor="blue.400" w="full" h="full" />
+              // <Item
+              //   key={index}
+              //   index={index}
+              //   isMobile={isMobile}
+              //   activeIndex={activeIndex}
+              //   {...item}
+              // />
             ))}
-          </Slider>
+          </Box>
         )}
       </Flex>
     </Flex>
@@ -83,12 +105,7 @@ const Item = (props: ItemProps) => {
   const { index, activeIndex, isMobile, img, title, description } = props;
   const isActive = index === activeIndex;
   return (
-    <Flex
-      mt={10}
-      px={isActive ? 6 : 0}
-      align="center"
-      h={isMobile ? "fit-content" : 500}
-    >
+    <Flex align="center">
       <Flex
         justifyContent="space-between"
         align="center"
@@ -96,8 +113,11 @@ const Item = (props: ItemProps) => {
           base: "column-reverse",
           sm: index % 2 === 0 ? "row-reverse" : "row",
         }}
-        h={isActive ? "full" : "fit-content"}
+        w="full"
+        h={isActive ? "545px" : "462.84px"}
         border="1px solid"
+        rounded="60px"
+        overflow="hidden"
       >
         <Box w={{ base: "full", sm: "50%" }}>
           <Image src={img} alt="Logo" width={800} height={800} />

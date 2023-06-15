@@ -5,6 +5,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
 import {
   Box,
+  Button,
   CloseButton,
   Container,
   Drawer,
@@ -44,7 +45,10 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" style={{ height: "100%", width: "100%" }}>
+    <html
+      lang="en"
+      style={{ height: "100%", width: "100%", scrollBehavior: "smooth" }}
+    >
       <body
         className={nunito.className}
         style={{ height: "100%", width: "100%" }}
@@ -90,20 +94,25 @@ const DesktopNav = (props: DesktopNavProps) => {
   const { onToggle } = props;
 
   return (
-    <Flex justify="space-around" bg="brandPurple.600">
+    <Flex
+      justify="space-around"
+      bg="brandPurple.600"
+      position="sticky"
+      top={0}
+      zIndex={999}
+    >
       <Flex
         w="full"
         maxW="1280px"
         minH="80px"
-        py={{ base: 2 }}
+        py={{ base: 5 }}
         px={{ base: 4 }}
         align="center"
       >
-        <Flex flex={{ base: 1 }} justify="space-between">
+        <Flex flex={{ base: 1 }} justify="space-between" align="center">
           <Image
-            width={100}
-            height={100}
-            style={{ width: "120px" }}
+            width={201.88}
+            height={40}
             alt="Logo"
             src="/LogoVUS.png"
             priority
@@ -113,6 +122,7 @@ const DesktopNav = (props: DesktopNavProps) => {
           <Stack
             direction="row"
             wrap="wrap"
+            spacing="32px"
             display={{ base: "none", sm: "flex" }}
             justify={{ base: "unset", sm: "flex-end" }}
           >
@@ -139,24 +149,45 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
   const isActive = pathname === href;
 
   return (
-    <Box
-      p={2}
-      borderRadius="4px"
-      fontWeight="bold"
-      {...(isActive
-        ? {
-            color: "white",
-            _hover: { textDecoration: "none" },
-          }
-        : {
-            color: "white",
-            _hover: { textDecoration: "none" },
-          })}
+    <Button
+      p={0}
+      fontWeight="900"
+      fontSize="16px"
+      lineHeight="20px"
+      letterSpacing={0.5}
+      color="white"
+      bg="transparent"
+      _hover={{ color: "brandOrange.500" }}
+      _active={{ bg: "transparent" }}
+      onClick={() => {
+        if (!href) return;
+        const signupElement = document.getElementById(href);
+        if (signupElement) signupElement.scrollIntoView({ behavior: "smooth" });
+      }}
     >
-      <Link href={href} as={NextLink} _hover={{ textDecoration: "none" }}>
-        {label}
-      </Link>
-    </Box>
+      {label}
+    </Button>
+    // <Box
+    //   fontWeight="900"
+    //   fontSize="16px"
+    //   lineHeight="20px"
+    //   letterSpacing={0.5}
+    //   color="white"
+    //   _hover={{ color: "brandOrange.500" }}
+    // >
+    //   <Link
+    //     href="#"
+    //     as={NextLink}
+    //     onClick={() => {
+    //       const signupElement = document.getElementById("signup");
+    //       if (signupElement)
+    //         signupElement.scrollIntoView({ behavior: "smooth" });
+    //     }}
+    //     _hover={{ textDecoration: "none" }}
+    //   >
+    //     {label}
+    //   </Link>
+    // </Box>
   );
 };
 
@@ -245,20 +276,18 @@ interface NavItem {
 }
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Giới Thiệu",
-    href: "/",
+    label: "Giới thiệu",
   },
   {
-    label: "Trải Nghiệm Thử",
-    href: "#signup",
+    label: "Trải nghiệm ngay",
+    href: "signup",
   },
   {
-    label: "Câu Hỏi Thường Gặp",
-    href: "#faq",
+    label: "Câu hỏi thường gặp",
+    href: "faq",
   },
   {
-    label: "Góp Ý",
-    href: "#",
+    label: "Góp ý",
   },
 ];
 
@@ -327,7 +356,14 @@ const Footer = () => {
 const VUS_Info = () => {
   return (
     <Flex py={{ base: 6, sm: 10 }} w="full" direction="column">
-      <Image width={200} height={200} alt="Logo" src="/logo.svg" priority />
+      <Image
+        width={201.88}
+        height={40}
+        alt="Logo"
+        src="/LogoVUS.png"
+        priority
+        quality={100}
+      />
       <Text color="white" fontSize={{ base: "xs", sm: "sm" }} mt={4}>
         © CÔNG TY CỔ PHẦN QUỐC TẾ ANH VĂN HỘI VIỆT MỸ
       </Text>
