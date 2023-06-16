@@ -5,6 +5,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
 import {
   Box,
+  Button,
   CloseButton,
   Container,
   Drawer,
@@ -20,14 +21,12 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Inter } from "next/font/google";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
 import { Providers } from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import { nunito } from "./fonts";
 
 export default function RootLayout({
   children,
@@ -46,11 +45,8 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" style={{ height: "100%", width: "100%" }}>
-      <body
-        className={inter.className}
-        style={{ height: "100%", width: "100%" }}
-      >
+    <html lang="en">
+      <body className={nunito.className}>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           strategy="afterInteractive"
@@ -73,7 +69,7 @@ export default function RootLayout({
 
             <MobileNav isOpen={isOpen} onToggle={onToggle} />
 
-            <Container minW="100%" bg="white" overflow="auto" m={0} p={0}>
+            <Container minW="100%" bg="white" overflowX="hidden" m={0} p={0}>
               {children}
             </Container>
 
@@ -92,28 +88,35 @@ const DesktopNav = (props: DesktopNavProps) => {
   const { onToggle } = props;
 
   return (
-    <Flex justify="space-around" bg="brandPurple.600">
+    <Flex
+      justify="space-around"
+      bg="brandPurple.600"
+      position="sticky"
+      top={0}
+      zIndex={999}
+    >
       <Flex
         w="full"
-        maxW="1280px"
-        minH="60px"
-        py={{ base: 2 }}
+        maxW="1120px"
+        minH="80px"
+        py={{ base: 5 }}
         px={{ base: 4 }}
         align="center"
       >
-        <Flex flex={{ base: 1 }} justify="space-between">
+        <Flex flex={{ base: 1 }} justify="space-between" align="center">
           <Image
-            width={100}
-            height={100}
-            style={{ width: "120px" }}
+            width={201.88}
+            height={40}
             alt="Logo"
-            src="/logo.svg"
+            src="/LogoVUS.png"
             priority
+            quality={100}
           />
 
           <Stack
             direction="row"
             wrap="wrap"
+            spacing="32px"
             display={{ base: "none", sm: "flex" }}
             justify={{ base: "unset", sm: "flex-end" }}
           >
@@ -136,28 +139,25 @@ const DesktopNav = (props: DesktopNavProps) => {
   );
 };
 const DesktopNavItem = ({ label, href }: NavItem) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
-
   return (
-    <Box
-      p={2}
-      borderRadius="4px"
-      fontWeight="bold"
-      {...(isActive
-        ? {
-            color: "white",
-            _hover: { textDecoration: "none" },
-          }
-        : {
-            color: "white",
-            _hover: { textDecoration: "none" },
-          })}
+    <Button
+      p={0}
+      fontWeight="900"
+      fontSize="16px"
+      lineHeight="20px"
+      letterSpacing={0.5}
+      color="white"
+      bg="transparent"
+      _hover={{ color: "brandOrange.500" }}
+      _active={{ bg: "transparent" }}
+      onClick={() => {
+        if (!href) return;
+        const signupElement = document.getElementById(href);
+        if (signupElement) signupElement.scrollIntoView({ behavior: "smooth" });
+      }}
     >
-      <Link href={href} as={NextLink} _hover={{ textDecoration: "none" }}>
-        {label}
-      </Link>
-    </Box>
+      {label}
+    </Button>
   );
 };
 
@@ -246,20 +246,18 @@ interface NavItem {
 }
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Giới Thiệu",
-    href: "/",
+    label: "Giới thiệu",
   },
   {
-    label: "Trải Nghiệm Thử",
-    href: "#signup",
+    label: "Trải nghiệm ngay",
+    href: "signup",
   },
   {
-    label: "Câu Hỏi Thường Gặp",
-    href: "#faq",
+    label: "Câu hỏi thường gặp",
+    href: "faq",
   },
   {
-    label: "Góp Ý",
-    href: "#",
+    label: "Góp ý",
   },
 ];
 
@@ -268,7 +266,7 @@ const Footer = () => {
     <Flex bg="brandPurple.600" w="full" justify="space-around">
       <Flex
         w="full"
-        maxW="1280px"
+        maxW="1120px"
         direction={{ base: "column", sm: "row" }}
         py={10}
       >
@@ -328,7 +326,14 @@ const Footer = () => {
 const VUS_Info = () => {
   return (
     <Flex py={{ base: 6, sm: 10 }} w="full" direction="column">
-      <Image width={200} height={200} alt="Logo" src="/logo.svg" priority />
+      <Image
+        width={201.88}
+        height={40}
+        alt="Logo"
+        src="/LogoVUS.png"
+        priority
+        quality={100}
+      />
       <Text color="white" fontSize={{ base: "xs", sm: "sm" }} mt={4}>
         © CÔNG TY CỔ PHẦN QUỐC TẾ ANH VĂN HỘI VIỆT MỸ
       </Text>
