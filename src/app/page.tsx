@@ -1,9 +1,9 @@
 import { getDocuments } from "@/utils/firestore";
 import Faq from "./components/Faq";
-import SignupForm from "./components/SignupForm";
 import Hero from "./components/Hero";
-import PlayToEarn from "./components/PlayToEarn";
+import LearnToEarn, { LearnToEarnItem } from "./components/LearnToEarn";
 import PlayToLearn, { PlayToLearnItem } from "./components/PlayToLearn";
+import SignupForm from "./components/SignupForm";
 export const revalidate = 0;
 
 export const metadata = {
@@ -18,7 +18,7 @@ export default async function Page() {
     <>
       <Hero />
       <PlayToLearn items={PLAY_TO_LEARNS} />
-      <PlayToEarn />
+      <LearnToEarn items={LEARN_TO_EARNS} />
       <SignupForm />
       <Faq result={faqs} />
     </>
@@ -27,27 +27,79 @@ export default async function Page() {
 
 const PLAY_TO_LEARNS: Array<PlayToLearnItem> = [
   {
-    img: "/pexels-photo.jpeg",
-    bg: "brandCyan.600",
-    icon: "/logo.svg",
-    title: "Sáng tạo nhập vai chinh phục thử thách",
+    img: "/KeyMessage1.png",
+    bg: "brandCyan.100",
+    icon: "/desktop/Icon.png",
+    title: [
+      { content: "Sáng tạo " },
+      {
+        content: "nhập vai ",
+        color: "brandCyan.600",
+      },
+      { content: "chinh phục thử thách" },
+    ],
     description:
       "Chọn cho mình một nhân vật đại diện và người bạn đồng hành siêu dễ thương, con và bạn của mình sẽ cùng lớn khôn thật vui trên bản đồ các hành tinh V-World và hành trình chinh phục Anh ngữ.",
   },
   {
-    img: "/pexels-photo.jpeg",
-    bg: "brandOrange.500",
-    icon: "/logo.svg",
-    title: "Kho trò chơi hấp dẫn, cá nhân hoá theo từng trình độ",
+    img: "/KeyMessage2.png",
+    bg: "brandOrange.100",
+    icon: "/desktop/Icon2.png",
+    title: [
+      { content: "Kho trò chơi hấp dẫn, " },
+      {
+        content: "cá nhân hoá ",
+        color: "brandOrange.500",
+      },
+      { content: "theo từng trình độ" },
+    ],
     description:
-      "3 hành tinh, 48 hòn đảo diệu kỳ, 960 hoạt động trò chơi, 1234 hoạt động học tập được lồng ghép, con tự do phiêu lưu & khám phá theo năng lực của bản thân và tăng cường khả năng phản xạ, tiến bộ tiếng Anh mỗi ngày.",
+      "3 hành tinh, 48 hòn đảo diệu kỳ, 960 hoạt động trò chơi, 1234 hoạt động học tập được lồng ghép, con tự do phiêu lưu & khám phá theo năng lực của bản thân",
   },
   {
-    img: "/pexels-photo.jpeg",
-    bg: "brandGreen.600",
-    icon: "/logo.svg",
-    title: "Thử thách bản thân, ghi tên mình trên Bảng Xếp Hạng",
+    img: "/KeyMessage3.png",
+    bg: "brandGreen.100",
+    icon: "/desktop/Icon3.png",
+    title: [
+      { content: "Thử thách bản thân, ghi tên mình trên " },
+      {
+        content: "Bảng Xếp Hạng",
+        color: "brandGreen.600",
+      },
+    ],
     description:
       "Các Sàn đấu thử thách mỗi ngày và mỗi tuần kích thích giúp con ôn luyện lại các nội dung đã học cũng như tạo động lực học tiếng Anh cho trẻ khi con nỗ lực ghi dấu ấn cùng bạn bè khắp nơi.",
+  },
+];
+
+const LEARN_TO_EARNS: Array<LearnToEarnItem> = [
+  {
+    icon: "/MoKhoaSangTao.png",
+    title: "Mở khoá sáng tạo",
+    description: "Sáng tạo thế giới và nâng cấp nhân vật của mình",
+  },
+  {
+    icon: "/ChienThanSanBau.png",
+    title: "Chiến thần săn báu",
+    description:
+      "Sở hữu trọn bộ sưu tập các vật phẩm, quà tặng độc quyền từ VUS",
+  },
+  {
+    icon: "/DoiTruongNgoaiGiao.png",
+    title: "Đội trưởng ngoại giao",
+    description:
+      "Mở khoá những giờ tương tác trực tiếp với giáo viên nước ngoài siêu vui, siêu thú vị",
+  },
+  {
+    icon: "/TheoDoiTienDo.png",
+    title: "Theo dõi tiến độ dễ dàng",
+    description:
+      "Sau mỗi cuộc hành trình, các Sàn đấu thử thách được lồng ghép cùng hệ thống đo lường",
+  },
+  {
+    icon: "/TangCuongGiaoTiep.png",
+    title: "Tăng cường khả năng giao tiếp Anh ngữ",
+    description:
+      "Các buổi giao tiếp 1:1 với Giáo viên nước ngoài sau mỗi chặng không chỉ giúp con trau dồi thêm kỹ năng",
   },
 ];

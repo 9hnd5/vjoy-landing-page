@@ -45,7 +45,7 @@ const colors = {
   brandCyan: {
     600: "#029ED8",
     500: "#03CBFC",
-    100: "#CCFEF9",
+    100: "#CCFEF960",
   },
   brandGray: {
     900: "#101828",
@@ -57,13 +57,13 @@ const colors = {
   brandGreen: {
     600: "#3CC155",
     500: "#A0F698",
-    100: "#E6FDDD",
+    100: "#E6FDDD60",
   },
   brandOrange: {
     600: "#FC7006",
     500: "#FF860D",
     400: "#FFA334",
-    100: "#FFF1D3",
+    100: "#FFF1D360",
   },
   brandPink: {
     600: "#D85E85",

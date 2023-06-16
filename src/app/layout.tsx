@@ -45,14 +45,8 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html
-      lang="en"
-      style={{ height: "100%", width: "100%", scrollBehavior: "smooth" }}
-    >
-      <body
-        className={nunito.className}
-        style={{ height: "100%", width: "100%" }}
-      >
+    <html lang="en">
+      <body className={nunito.className}>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           strategy="afterInteractive"
@@ -75,7 +69,7 @@ export default function RootLayout({
 
             <MobileNav isOpen={isOpen} onToggle={onToggle} />
 
-            <Container minW="100%" bg="white" overflow="auto" m={0} p={0}>
+            <Container minW="100%" bg="white" overflowX="hidden" m={0} p={0}>
               {children}
             </Container>
 
@@ -103,7 +97,7 @@ const DesktopNav = (props: DesktopNavProps) => {
     >
       <Flex
         w="full"
-        maxW="1280px"
+        maxW="1120px"
         minH="80px"
         py={{ base: 5 }}
         px={{ base: 4 }}
@@ -145,9 +139,6 @@ const DesktopNav = (props: DesktopNavProps) => {
   );
 };
 const DesktopNavItem = ({ label, href }: NavItem) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
-
   return (
     <Button
       p={0}
@@ -167,27 +158,6 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
     >
       {label}
     </Button>
-    // <Box
-    //   fontWeight="900"
-    //   fontSize="16px"
-    //   lineHeight="20px"
-    //   letterSpacing={0.5}
-    //   color="white"
-    //   _hover={{ color: "brandOrange.500" }}
-    // >
-    //   <Link
-    //     href="#"
-    //     as={NextLink}
-    //     onClick={() => {
-    //       const signupElement = document.getElementById("signup");
-    //       if (signupElement)
-    //         signupElement.scrollIntoView({ behavior: "smooth" });
-    //     }}
-    //     _hover={{ textDecoration: "none" }}
-    //   >
-    //     {label}
-    //   </Link>
-    // </Box>
   );
 };
 
@@ -296,7 +266,7 @@ const Footer = () => {
     <Flex bg="brandPurple.600" w="full" justify="space-around">
       <Flex
         w="full"
-        maxW="1280px"
+        maxW="1120px"
         direction={{ base: "column", sm: "row" }}
         py={10}
       >

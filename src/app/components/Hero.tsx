@@ -8,12 +8,12 @@ export default function Hero() {
   return (
     <Flex
       w="full"
-      h="calc(100vh - 80px)"
+      h="700px"
       position="relative"
       justify="space-around"
     >
       <Image src="/desktop/Hero.png" alt="Hero" fill priority quality={100} />
-      <VStack w="400px" h="152px" mt="474px" spacing="16px" zIndex={1}>
+      <VStack w="400px" h="152px" mt="464px" spacing="16px" zIndex={1}>
         <Button
           w="100%"
           h="72px"

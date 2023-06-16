@@ -1,83 +1,59 @@
 "use client";
 
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  VStack,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import Image from "next/image";
 
-export default function PlayToEarn() {
+export type LearnToEarnItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+interface Props {
+  items: Array<LearnToEarnItem>;
+}
+
+export default function LearnToEarn({ items }: Props) {
   return (
-    <Flex w="full" direction="column" align="center" my={20}>
-      <Flex w="full" maxW="1280px" direction="column" px={{ base: 8, sm: 0 }}>
-        <Flex
-          w="full"
-          direction="column"
-          justify="space-between"
-          align="center"
-          textAlign="center"
-        >
-          <Image width={300} height={300} alt="Logo" src="/logo.svg" priority />
-          <Heading size="lg" fontWeight="bold" my={5}>
-            Gặt hái niềm vui, đón nhận thành quả
-          </Heading>
-        </Flex>
-        <Flex
-          justifyContent="space-between"
-          direction={{
-            base: "column",
-            sm: "row",
-          }}
-          mt={10}
-        >
-          <Flex w={{ base: "full", sm: "47%" }} direction="column">
-            <Flex
-              direction="column"
-              justify="space-between"
-              w={{ base: "full", sm: "60%" }}
-              align={{ base: "center", sm: "flex-start" }}
-              textAlign={{ base: "center", sm: "left" }}
-            >
-              <Image
-                width={150}
-                height={150}
-                alt="Logo"
-                src="/logo.svg"
-                priority
-              />
-              <Heading size="md" fontWeight="bold" my={2}>
-                Gặt hái niềm vui
-              </Heading>
-              <Text color="brandGray.500" mt={2}>
-                Con hứng khởi chinh phục các thử thách mới, mở khoá các kỹ năng
-                và tiềm năng để thu thập đá quý V-Gem. Bằng chính kết quả học
-                tập của mình, con có thể dùng V-Gem theo cách riêng của mình:
-              </Text>
-            </Flex>
-          </Flex>
-          <Flex
-            w={{ base: "full", sm: "47%" }}
-            direction="column"
-            mt={{ base: 20, sm: 0 }}
+    <Flex w="full" direction="column" align="center" mt="340px">
+      <Flex w="full" maxW="1200px" direction="column" zIndex={1}>
+        <VStack w="full" spacing="24px" align="center" textAlign="center">
+          <Image
+            key={"image"}
+            width={750}
+            height={192}
+            alt="Play to earn"
+            src="/desktop/LearnToEarn.png"
+            priority
+          />
+          <Text
+            key={"text"}
+            fontWeight="900"
+            fontSize="32px"
+            lineHeight="40px"
+            letterSpacing={0.5}
           >
-            <Flex
-              direction="column"
-              justify="space-between"
-              w={{ base: "full", sm: "60%" }}
-              align={{ base: "center", sm: "flex-start" }}
-              textAlign={{ base: "center", sm: "left" }}
-            >
-              <Image
-                width={150}
-                height={150}
-                alt="Logo"
-                src="/logo.svg"
-                priority
-              />
-              <Heading size="md" fontWeight="bold" my={2}>
-                Đón nhận thành quả
-              </Heading>
-            </Flex>
-          </Flex>
+            Gặt hái niềm vui, đón nhận thành quả
+          </Text>
+        </VStack>
+        <Flex mt="82px" w="full" justify="center" wrap="wrap">
+          {items.map((item, index) => (
+            <Item key={index} index={index} {...item} />
+          ))}
         </Flex>
       </Flex>
+
+      <Box w="full" h="600px" position="relative" mt="-150px">
+        <Image src="/Cloud.png" alt="cloud" fill priority />
+      </Box>
       <Flex w="full" direction="column" mt={10}>
         <Flex
           w={{ base: "full", sm: "70%" }}
@@ -187,3 +163,43 @@ export default function PlayToEarn() {
     </Flex>
   );
 }
+
+interface ItemProps extends LearnToEarnItem {
+  index: number;
+}
+const Item = (props: ItemProps) => {
+  const { index, title, description, icon } = props;
+
+  return (
+    <Box
+      w={`calc((100% - 120px) / 3)`}
+      ml={index % 3 === 0 ? 0 : "60px"}
+      mb="60px"
+    >
+      <VStack spacing="52px" align="center">
+        <Image width={270} height={259} alt="Logo" src={icon} priority />
+        <VStack w="full" spacing="12px" align="center">
+          <Text
+            fontWeight="900"
+            fontSize="24px"
+            lineHeight="30px"
+            letterSpacing={0.5}
+            align="center"
+          >
+            {title}
+          </Text>
+          <Text
+            color="brandGray.500"
+            fontWeight="700"
+            fontSize="20px"
+            lineHeight="30px"
+            letterSpacing={1}
+            align="center"
+          >
+            {description}
+          </Text>
+        </VStack>
+      </VStack>
+    </Box>
+  );
+};
