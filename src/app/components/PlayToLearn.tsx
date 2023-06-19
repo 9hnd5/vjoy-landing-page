@@ -1,9 +1,11 @@
 "use client";
 
 import {
+  AspectRatio,
   Box,
   Flex,
   HStack,
+  Stack,
   Text,
   VStack,
   useMediaQuery,
@@ -30,6 +32,7 @@ interface Props {
 export default function PlayToLearn({ items }: Props) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
+  const folder = isMobile ? "mobile" : "desktop";
   const settings = {
     autoplay: true,
     autoplaySpeed: 3000,
@@ -46,29 +49,33 @@ export default function PlayToLearn({ items }: Props) {
   };
   return (
     <Flex w="full" justify="space-around" mt="140px">
-      <Flex w="full" direction="column" px={{ base: 8, sm: 0 }}>
+      <Flex w="full" direction="column" px={{ base: "24px", sm: 0 }}>
         <VStack w="full" spacing="24px" align="center" textAlign="center">
           <Image
-            width={689}
-            height={251}
+            width={isMobile ? 342 : 689}
+            height={isMobile ? 100 : 251}
             alt="Play to learn"
-            src="/desktop/PlayToLearn3x.png"
+            src={`/${folder}/PlayToLearn3x.png`}
             priority
           />
           <Text
             color={"brandGray.900"}
             fontWeight="900"
-            fontSize="32px"
-            lineHeight="40px"
+            fontSize={{ base: "24px", md: "32px" }}
+            lineHeight={{ base: "30px", md: "40px" }}
             letterSpacing={0.5}
+            px={{ base: "24px", md: 0 }}
           >
-            Con vui học, sáng tạo không giới hạn
+            {`Con vui học${isMobile ? " và" : ","} sáng tạo không giới hạn`}
           </Text>
         </VStack>
-        {isMobile &&
-          items.map((item, index) => (
-            <Item key={index} index={index} isMobile={isMobile} {...item} />
-          ))}
+        {isMobile && (
+          <Box w="full" mt="64px">
+            {items.map((item, index) => (
+              <Item key={index} index={index} isMobile={isMobile} {...item} />
+            ))}
+          </Box>
+        )}
 
         {!isMobile && (
           <Box as={Slider} {...settings} mt="102px">
@@ -97,28 +104,43 @@ const Item = (props: ItemProps) => {
   const { index, activeIndex, isMobile, bg, img, title, description, icon } =
     props;
   const isActive = index === activeIndex;
+  const folder = isMobile ? "mobile" : "desktop";
 
   return (
-    <HStack
-      p={10}
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      as={Box}
+      p={{ base: "24px", md: 10 }}
       spacing={10}
-      mb="52px"
+      mb={{ base: "24px", md: "52px" }}
       align="center"
-      h="545px"
-      transform={isActive ? "scale(1)" : "scale(0.85)"}
-      transition="all 0.3s"
+      h={{ md: "545px" }}
+      transform={{ md: isActive ? "scale(1)" : "scale(0.85)" }}
+      transition={{ md: "all 0.3s" }}
       bg={bg}
       rounded="60px"
       overflow="hidden"
     >
-      <VStack maxW="55%" spacing="32px" pl="20px" align="flex-start">
-        <Image width={108} height={108} alt="Logo" src={icon} priority />
+      <VStack
+        maxW={{ md: "55%" }}
+        spacing={{ base: "16px", md: "32px" }}
+        pl={{ md: "20px" }}
+        align={{ base: "center", md: "flex-start" }}
+      >
+        <Image
+          width={isMobile ? 80 : 108}
+          height={isMobile ? 80 : 108}
+          alt="Logo"
+          src={`/${folder}/${icon}`}
+          priority
+        />
         <VStack spacing="16px" align="flex-start">
           <Text
             fontWeight="900"
-            fontSize="40px"
-            lineHeight="50px"
+            fontSize={{ base: "24px", md: "40px" }}
+            lineHeight={{ base: "30px", md: "50px" }}
             letterSpacing={0.5}
+            textAlign={{ base: "center", md: "left" }}
           >
             {title.map((item, index) => (
               <Box
@@ -133,17 +155,18 @@ const Item = (props: ItemProps) => {
           <Text
             color="brandGray.500"
             fontWeight="700"
-            fontSize="20px"
-            lineHeight="30px"
+            fontSize={{ base: "16px", md: "20px" }}
+            lineHeight={{ base: "24px", md: "30px" }}
             letterSpacing={1}
+            textAlign={{ base: "center", md: "left" }}
           >
             {description}
           </Text>
         </VStack>
       </VStack>
-      <Box w="374px" h="full" position="relative">
+      <AspectRatio w={{ base: "full", md: "374px" }} ratio={1122/1395} position="relative">
         <Image src={img} alt="Logo" fill priority />
-      </Box>
-    </HStack>
+      </AspectRatio>
+    </Stack>
   );
 };

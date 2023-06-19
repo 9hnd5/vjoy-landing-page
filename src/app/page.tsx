@@ -28,8 +28,8 @@ export default async function Page() {
 const PLAY_TO_LEARNS: Array<PlayToLearnItem> = [
   {
     img: "/KeyMessage1.png",
-    bg: "brandCyan.100",
-    icon: "/desktop/Icon.png",
+    bg: "rgba(204, 254, 249, 0.6)",
+    icon: "Icon.png",
     title: [
       { content: "Sáng tạo " },
       {
@@ -43,8 +43,8 @@ const PLAY_TO_LEARNS: Array<PlayToLearnItem> = [
   },
   {
     img: "/KeyMessage2.png",
-    bg: "brandOrange.100",
-    icon: "/desktop/Icon2.png",
+    bg: "rgba(255, 241, 211, 0.6)",
+    icon: "Icon2.png",
     title: [
       { content: "Kho trò chơi hấp dẫn, " },
       {
@@ -58,8 +58,8 @@ const PLAY_TO_LEARNS: Array<PlayToLearnItem> = [
   },
   {
     img: "/KeyMessage3.png",
-    bg: "brandGreen.100",
-    icon: "/desktop/Icon3.png",
+    bg: "rgba(230, 253, 221, 0.6)",
+    icon: "Icon3.png",
     title: [
       { content: "Thử thách bản thân, ghi tên mình trên " },
       {
@@ -95,11 +95,15 @@ const LEARN_TO_EARNS: Array<LearnToEarnItem> = [
     title: "Theo dõi tiến độ dễ dàng",
     description:
       "Sau mỗi cuộc hành trình, các Sàn đấu thử thách được lồng ghép cùng hệ thống đo lường",
+    descriptionMobile:
+      ", báo cáo kết quả thông minh, cập nhật theo thời gian thực giúp ba mẹ dễ dàng nắm được kết quả và tiến bộ của con.",
   },
   {
     icon: "/TangCuongGiaoTiep.png",
     title: "Tăng cường khả năng giao tiếp Anh ngữ",
     description:
       "Các buổi giao tiếp 1:1 với Giáo viên nước ngoài sau mỗi chặng không chỉ giúp con trau dồi thêm kỹ năng",
+    descriptionMobile:
+      " phản xạ mà còn đảm bảo việc ứng dụng tiếng Anh vào thực tế.",
   },
 ];
