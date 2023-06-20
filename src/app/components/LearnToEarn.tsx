@@ -202,6 +202,7 @@ export default function LearnToEarn({ items }: Props) {
           w="full"
           ratio={{ base: 1170 / 2601, md: 4125 / 3010 }}
           position="relative"
+          zIndex={1}
         >
           <Image
             src={`/${folder}/Vector281.png`}

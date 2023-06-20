@@ -6,12 +6,13 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  Heading,
   Input,
   InputGroup,
   InputLeftElement,
+  Stack,
+  Text,
   VStack,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -69,97 +70,132 @@ export default function SignupForm() {
   };
 
   return (
-    <Box id="signup" w="full" px={{ base: 0, sm: 10 }} py={20}>
+    <Stack
+      id="signup"
+      spacing={0}
+      width="100%"
+      direction={{ base: "column", sm: "row" }}
+      height={{ base: 1030, sm: 678 }}
+      pos={{ base: "relative" }}
+      mt={{ base: -120, sm: -300 }}
+      px={{ base: 0, sm: 12 }}
+      py={{ base: 12 }}
+      zIndex={{ base: "inherit", sm: 2 }}
+    >
       <Box
-        w="full"
-        h="500px"
-        rounded={{ base: 0, sm: "40px" }}
-        overflow="hidden"
-        pos="relative"
+        roundedLeft={{ base: 0, sm: 40 }}
+        overflow={{ base: "unset", sm: "hidden" }}
+        position={{ base: "absolute", sm: "relative" }}
       >
-        <Image src="/pexels-photo.jpeg" alt="Logo" fill />
+        <Image
+          src="/HappyFamilyPosing.png"
+          alt="Logo"
+          priority
+          width={600}
+          height={678}
+        />
       </Box>
-      <Box
-        w="calc(100vw - 40px)"
-        maxW="md"
-        backdropFilter="auto"
-        backdropBlur="80px"
-        backdropBrightness={1.5}
-        ml={{ base: 5, sm: 20 }}
-        mt={-80}
-        px={8}
-        py={12}
-        rounded={"40px"}
-        shadow={"lg"}
+      <VStack
+        spacing={5}
+        background="rgba(255, 255, 255, 0.8)"
+        backdropFilter="blur(30px)"
+        shadow="0px 4px 60px rgba(75, 28, 174, 0.15)"
+        flex={1}
+        px={{ base: 6, sm: 6 }}
+        py={{ base: 6, sm: 6 }}
+        roundedRight={{ base: 40, sm: 40 }}
+        roundedLeft={{ base: 40, sm: 0 }}
+        top={{ base: 450, sm: 0 }}
+        right={{ base: 6, sm: 0 }}
+        left={{ base: 6, sm: 0 }}
+        pos={{ base: "absolute", sm: "unset" }}
       >
-        <VStack spacing={5}>
-          <FormControl>
-            <Heading fontSize="3xl">
-              Ba mẹ ơi! Nhanh tay Đăng ký trải nghiệm cho con nhé!
-            </Heading>
-          </FormControl>
-          <FormControl isRequired isInvalid={!!errors.parent}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Icon as={FaUserCircle} color="brandGray.400" />
-              </InputLeftElement>
-              <Input
-                placeholder="Họ và tên phụ huynh"
-                bg="white"
-                color="brandGray.500"
-                {...register("parent", { required: "Không được bỏ trống" })}
-              />
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.parent && errors.parent.message}
-            </FormErrorMessage>
-          </FormControl>
+        <FormControl>
+          <Box fontSize="4xl" fontWeight={900}>
+            Ba mẹ ơi! Nhanh tay{" "}
+            <Text display="inline" color="brandPurple.600">
+              Đăng ký trải nghiệm
+            </Text>{" "}
+            cho con nhé!
+          </Box>
+        </FormControl>
 
-          <FormControl isRequired isInvalid={!!errors.phone}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <PhoneIcon color="brandGray.400" />
-              </InputLeftElement>
-              <Input
-                placeholder="Số điện thoại"
-                bg="white"
-                color="brandGray.500"
-                {...register("phone", { required: "Không được bỏ trống" })}
-              />
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.phone && errors.phone.message}
-            </FormErrorMessage>
-          </FormControl>
+        <FormControl isRequired isInvalid={!!errors.parent}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none" h="80px">
+              <Icon as={FaUserCircle} color="brandGray.400" />
+            </InputLeftElement>
+            <Input
+              rounded="24px"
+              h="80px"
+              placeholder="Họ và tên phụ huynh"
+              bg="brandGray.100"
+              color="brandGray.500"
+              {...register("parent", { required: "Không được bỏ trống" })}
+            />
+          </InputGroup>
+          <FormErrorMessage>
+            {errors.parent && errors.parent.message}
+          </FormErrorMessage>
+        </FormControl>
 
-          <FormControl isRequired isInvalid={!!errors.location}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Icon as={HiLocationMarker} color="brandGray.400" />
-              </InputLeftElement>
-              <Input
-                placeholder="Địa chỉ"
-                bg="white"
-                color="brandGray.500"
-                {...register("location", { required: "Không được bỏ trống" })}
-              />
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.location && errors.location.message}
-            </FormErrorMessage>
-          </FormControl>
+        <FormControl isRequired isInvalid={!!errors.phone}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none" h="80px">
+              <PhoneIcon color="brandGray.400" />
+            </InputLeftElement>
+            <Input
+              rounded="24px"
+              h="80px"
+              placeholder="Số điện thoại"
+              bg="brandGray.100"
+              color="brandGray.500"
+              {...register("phone", { required: "Không được bỏ trống" })}
+            />
+          </InputGroup>
+          <FormErrorMessage>
+            {errors.phone && errors.phone.message}
+          </FormErrorMessage>
+        </FormControl>
 
-          <Button
-            w="100%"
-            bg="brandPurple.600"
-            color="white"
-            onClick={onSubmit(handleSubmit)}
-            isLoading={isLoading}
-          >
-            Trải Ngiệm Ngay
-          </Button>
-        </VStack>
-      </Box>
-    </Box>
+        <FormControl isRequired isInvalid={!!errors.location}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none" h="80px">
+              <Icon as={HiLocationMarker} color="brandGray.400" />
+            </InputLeftElement>
+            <Input
+              rounded="24px"
+              h="80px"
+              placeholder="Địa chỉ"
+              bg="brandGray.100"
+              color="brandGray.500"
+              {...register("location", { required: "Không được bỏ trống" })}
+            />
+          </InputGroup>
+          <FormErrorMessage>
+            {errors.location && errors.location.message}
+          </FormErrorMessage>
+        </FormControl>
+
+        <Button
+          onClick={onSubmit(handleSubmit)}
+          isLoading={isLoading}
+          w="100%"
+          h="72px"
+          bgColor="brandPurple.600"
+          boxShadow="inset 0px -10px 0px rgba(29, 8, 56, 0.2)"
+          color="white"
+          rounded="40px"
+          overflow={"hidden"}
+          fontWeight="900"
+          fontSize="24px"
+          lineHeight="30px"
+          letterSpacing="0.5px"
+          _hover={{}}
+        >
+          Trải Ngiệm Ngay
+        </Button>
+      </VStack>
+    </Stack>
   );
 }
