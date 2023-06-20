@@ -52,6 +52,7 @@ export default function PlayToLearn({ items }: Props) {
       <Flex w="full" direction="column" px={{ base: "24px", sm: 0 }}>
         <VStack w="full" spacing="24px" align="center" textAlign="center">
           <Image
+            key={1}
             width={isMobile ? 342 : 689}
             height={isMobile ? 100 : 251}
             alt="Play to learn"
@@ -59,6 +60,7 @@ export default function PlayToLearn({ items }: Props) {
             priority
           />
           <Text
+            key={2}
             color={"brandGray.900"}
             fontWeight="900"
             fontSize={{ base: "24px", md: "32px" }}
@@ -128,14 +130,16 @@ const Item = (props: ItemProps) => {
         align={{ base: "center", md: "flex-start" }}
       >
         <Image
+          key={1}
           width={isMobile ? 80 : 108}
           height={isMobile ? 80 : 108}
           alt="Logo"
           src={`/${folder}/${icon}`}
           priority
         />
-        <VStack spacing="16px" align="flex-start">
+        <VStack key={2} spacing="16px" align="flex-start">
           <Text
+            key={1}
             fontWeight="900"
             fontSize={{ base: "24px", md: "40px" }}
             lineHeight={{ base: "30px", md: "50px" }}
@@ -153,6 +157,7 @@ const Item = (props: ItemProps) => {
             ))}
           </Text>
           <Text
+            key={2}
             color="brandGray.500"
             fontWeight="700"
             fontSize={{ base: "16px", md: "20px" }}
@@ -164,8 +169,18 @@ const Item = (props: ItemProps) => {
           </Text>
         </VStack>
       </VStack>
-      <AspectRatio w={{ base: "full", md: "374px" }} ratio={1122/1395} position="relative">
-        <Image src={img} alt="Logo" fill priority />
+      <AspectRatio
+        w={{ base: "full", md: "374px" }}
+        ratio={1122 / 1395}
+        position="relative"
+      >
+        <Image
+          src={img}
+          alt="Logo"
+          fill
+          sizes="(max-width: 768px) 100vw"
+          priority
+        />
       </AspectRatio>
     </Stack>
   );

@@ -13,6 +13,7 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
+  FlexProps,
   Heading,
   IconButton,
   Link,
@@ -27,6 +28,7 @@ import Script from "next/script";
 import React from "react";
 import { Providers } from "./providers";
 import { nunito } from "./fonts";
+import { svn_arco } from "./fonts";
 
 export default function RootLayout({
   children,
@@ -100,7 +102,7 @@ const DesktopNav = (props: DesktopNavProps) => {
         maxW="1120px"
         minH="80px"
         py={{ base: 5 }}
-        px={{ base: 4 }}
+        px={{ base: "24px", md: 0 }}
         align="center"
       >
         <Flex flex={{ base: 1 }} justify="space-between" align="center">
@@ -120,18 +122,21 @@ const DesktopNav = (props: DesktopNavProps) => {
             display={{ base: "none", sm: "flex" }}
             justify={{ base: "unset", sm: "flex-end" }}
           >
-            {NAV_ITEMS.map((navItem) => (
-              <DesktopNavItem key={navItem.href} {...navItem} />
+            {NAV_ITEMS.map((navItem, index) => (
+              <DesktopNavItem key={index} {...navItem} />
             ))}
           </Stack>
         </Flex>
 
         <Flex display={{ base: "flex", sm: "none" }}>
-          <IconButton
+          <Box
+            key={1}
+            w="32px"
+            h="32px"
+            bgColor="transparent"
+            bgImg="/icons/DashboardSquare.png"
+            bgSize="32px 32px"
             onClick={onToggle}
-            icon={<HamburgerIcon w={5} h={5} />}
-            variant="ghost"
-            aria-label="Toggle Navigation"
           />
         </Flex>
       </Flex>
@@ -182,29 +187,24 @@ const MobileNav = (props: MobileNavProps) => {
           <Flex direction="column" h="full">
             <Stack color="white">
               <Flex justifyContent="flex-end" pt={2}>
-                <Flex
-                  bg="white"
-                  w="20px"
-                  h="20px"
-                  align="center"
-                  justify="space-around"
-                  borderRadius="40%"
-                >
-                  <CloseButton
-                    color="brandPurple.700"
-                    size="sm"
-                    onClick={onToggle}
-                  />
-                </Flex>
+                <Box
+                  key={1}
+                  w="32px"
+                  h="32px"
+                  bgColor="transparent"
+                  bgImg="/icons/DeleteCircle.png"
+                  bgSize="32px 32px"
+                  onClick={onToggle}
+                />
               </Flex>
-              <Stack pt={6} spacing={4}>
+              <Stack pt="24px" spacing="32px">
                 {NAV_ITEMS.map((navItem) => (
                   <MobileNavItem key={navItem.label} {...navItem} />
                 ))}
               </Stack>
             </Stack>
             <Spacer />
-            <VUS_Info />
+            <VUS_Info w="full" />
           </Flex>
         </DrawerBody>
       </DrawerContent>
@@ -212,26 +212,19 @@ const MobileNav = (props: MobileNavProps) => {
   );
 };
 const MobileNavItem = ({ label, href }: NavItem) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
-
   return (
     <Box
-      px={4}
-      py={2}
-      borderRadius="4px"
-      fontSize="2xl"
-      fontWeight="bold"
-      {...(isActive
-        ? {
-            bg: "red.500",
-            _hover: { textDecoration: "none" },
-          }
-        : {
-            _hover: { textDecoration: "none" },
-          })}
+      fontWeight="900"
+      fontSize="32px"
+      lineHeight="40px"
+      letterSpacing={0.5}
+      _hover={{ textDecoration: "none" }}
     >
-      <Link href={href} as={NextLink} _hover={{ textDecoration: "none" }}>
+      <Link
+        href={`#${href ?? ""}`}
+        as={NextLink}
+        _hover={{ textDecoration: "none" }}
+      >
         {label}
       </Link>
     </Box>
@@ -270,9 +263,10 @@ const Footer = () => {
         direction={{ base: "column", sm: "row" }}
         py={10}
       >
-        <Box w={{ base: "full", sm: "42%" }} px={{ base: 8, sm: 0 }}>
-          <VUS_Info />
-        </Box>
+        <VUS_Info
+          w={{ base: "full", sm: "42%" }}
+          px={{ base: "24px", sm: 0 }}
+        />
         <Spacer />
         <Flex
           px={{ base: 8, sm: 0 }}
@@ -280,7 +274,14 @@ const Footer = () => {
           direction="column"
           color="white"
         >
-          <Heading fontSize="xl" mb={4}>
+          <Heading
+            className={svn_arco.className}
+            fontWeight={400}
+            fontSize="20px"
+            lineHeight="25px"
+            letterSpacing={1}
+            mb="24px"
+          >
             VỀ VUS
           </Heading>
           {ABOUT_ITEMS.map((item, idx) => (
@@ -289,8 +290,11 @@ const Footer = () => {
               href={item.href}
               as={NextLink}
               _hover={{ textDecoration: "none" }}
-              py={2}
-              fontSize="sm"
+              mb="16px"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="20px"
+              letterSpacing={1}
             >
               {item.label}
             </Link>
@@ -303,7 +307,14 @@ const Footer = () => {
           direction="column"
           color="white"
         >
-          <Heading fontSize="xl" mb={4}>
+          <Heading
+            className={svn_arco.className}
+            fontWeight={400}
+            fontSize="20px"
+            lineHeight="25px"
+            letterSpacing={1}
+            mb="24px"
+          >
             THÔNG TIN
           </Heading>
           {INFO_ITEMS.map((item, idx) => (
@@ -312,8 +323,11 @@ const Footer = () => {
               href={item.href}
               as={NextLink}
               _hover={{ textDecoration: "none" }}
-              py={2}
-              fontSize="sm"
+              mb="16px"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="20px"
+              letterSpacing={1}
             >
               {item.label}
             </Link>
@@ -323,9 +337,18 @@ const Footer = () => {
     </Flex>
   );
 };
-const VUS_Info = () => {
+const VUS_Info = (props: FlexProps) => {
   return (
-    <Flex py={{ base: 6, sm: 10 }} w="full" direction="column">
+    <Flex
+      py={{ base: 6, sm: 10 }}
+      direction="column"
+      fontWeight="700"
+      fontSize="12px"
+      lineHeight="15px"
+      letterSpacing={1}
+      color="white"
+      {...props}
+    >
       <Image
         width={201.88}
         height={40}
@@ -334,10 +357,8 @@ const VUS_Info = () => {
         priority
         quality={100}
       />
-      <Text color="white" fontSize={{ base: "xs", sm: "sm" }} mt={4}>
-        © CÔNG TY CỔ PHẦN QUỐC TẾ ANH VĂN HỘI VIỆT MỸ
-      </Text>
-      <Text color="white" fontSize="xs">
+      <Text mt={4}>© CÔNG TY CỔ PHẦN QUỐC TẾ ANH VĂN HỘI VIỆT MỸ</Text>
+      <Text>
         Giấy chứng nhận doanh nghiệp số: 0313548147, Ngày cấp giấy phép:
         24/11/2015, Nơi cấp: SKHDT TP.HCM Trụ Sở Chính Tại 189 Nguyễn Thị Minh
         Khai, Phường Phạm Ngũ Lão, Quận 1, Hồ Chí Minh, Điện thoại: 028 3925
