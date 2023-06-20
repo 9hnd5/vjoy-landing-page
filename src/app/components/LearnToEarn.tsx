@@ -200,8 +200,8 @@ export default function LearnToEarn({ items }: Props) {
             w={{ base: "full", sm: "50%" }}
             spacing="24px"
             align="flex-start"
-            pl={{ base: 0, md: "200px" }}
-            px={{ base: "24px", md: 0 }}
+            pl={{ base: "24px", md: "200px" }}
+            pr={{ base: "24px", md: 0 }}
             pt={{ base: "60px", md: "150px" }}
           >
             <Text

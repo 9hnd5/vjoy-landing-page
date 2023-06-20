@@ -1,12 +1,10 @@
 "use client";
 
 import * as gtag from "@/utils/gtag";
-import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link as NextLink } from "@chakra-ui/next-js";
 import {
   Box,
   Button,
-  CloseButton,
   Container,
   Drawer,
   DrawerBody,
@@ -15,7 +13,6 @@ import {
   Flex,
   FlexProps,
   Heading,
-  IconButton,
   Link,
   Spacer,
   Stack,
@@ -26,9 +23,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
+import { nunito, svn_arco } from "./fonts";
 import { Providers } from "./providers";
-import { nunito } from "./fonts";
-import { svn_arco } from "./fonts";
 
 export default function RootLayout({
   children,
