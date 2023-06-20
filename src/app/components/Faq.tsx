@@ -4,20 +4,19 @@ import {
   AccordionButton,
   AccordionItem,
   AccordionPanel,
+  AspectRatio,
   Box,
-  Center,
   Flex,
-  Grid,
-  GridItem,
   Heading,
   Icon,
   Text,
   VStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
-import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { FaArrowRight } from "react-icons/fa";
+import { nunito } from "../fonts";
 
 export const revalidate = 0;
 
@@ -31,60 +30,124 @@ type Props = {
 };
 export default function Faq(props: Props) {
   const { result } = props;
+  const [isMobile] = useMediaQuery("(max-width: 480px)");
+  const folder = isMobile ? "mobile" : "desktop";
 
   return (
-    <Grid id="faq" templateColumns="repeat(2, 1fr)">
-      <GridItem colSpan={{ base: 2, sm: 1 }}>
-        <Center>
-          <Image width={400} height={400} src="/kid.png" priority alt="kid" />
-        </Center>
-      </GridItem>
-      <GridItem colSpan={{ base: 2, sm: 1 }}>
-        <VStack>
-          <Box w="100%">
-            <Accordion allowMultiple>
-              <Heading ml={3} mb={3}>
+    <Flex id="faq" mt="100px" direction="column">
+      <Flex w="full" direction={{ base: "column-reverse", md: "row" }}>
+        <Flex
+          w={{ base: "443.4px", md: "50%" }}
+          justify="space-around"
+          align="center"
+        >
+          <AspectRatio
+            w={{ base: "full", md: "70%" }}
+            ratio={1617 / 2015}
+            position="relative"
+          >
+            <Image src="/FAQ.png" alt="faq" fill priority />
+          </AspectRatio>
+        </Flex>
+        <VStack
+          w={{ base: "full", md: "50%" }}
+          spacing={{ base: "24px", md: "32px" }}
+          padding={{ md: "27px" }}
+          mb={{ base: "30px", md: 0 }}
+        >
+          <Box w="100%" p={{ base: "24px", md: "34px" }} pb={0}>
+            <Accordion>
+              <Text
+                fontWeight="900"
+                fontSize={{ base: "32px", md: "40px" }}
+                lineHeight={{ base: "40px", md: "50px" }}
+                letterSpacing={0.5}
+                mb={{ base: "24px", md: "32px" }}
+              >
                 Câu hỏi thường gặp
-              </Heading>
-              {result?.map((item: any) => (
-                <AccordionItem key={item.id}>
+              </Text>
+              {result?.map((item: any, index) => (
+                <AccordionItem
+                  key={item.id}
+                  borderTopWidth={0}
+                  borderBottomWidth={
+                    index === result.length - 1 ? "0 !important" : "1px"
+                  }
+                  py={{ base: "24px", md: "32px" }}
+                >
                   {({ isExpanded }) => (
                     <>
                       <h2>
-                        <AccordionButton>
+                        <AccordionButton p={0}>
                           <Box as="span" flex="1" textAlign="left">
-                            <Heading fontSize="md">
+                            <Heading
+                              fontWeight="900"
+                              fontSize={{ base: "16px", md: "20px" }}
+                              lineHeight={{ base: "20px", md: "25px" }}
+                              letterSpacing={0.5}
+                              className={nunito.className}
+                            >
                               {item.data.question}
                             </Heading>
                           </Box>
                           {isExpanded ? (
-                            <Icon
-                              fontSize={20}
-                              as={AiFillMinusCircle}
-                              color="#FC7006"
+                            <Box
+                              key={1}
+                              w="28px"
+                              h="28px"
+                              bgColor="transparent"
+                              bgImg="/icons/SubtractCircle.png"
+                              bgSize="28px 28px"
                             />
                           ) : (
-                            <Icon
-                              fontSize={20}
-                              as={AiFillPlusCircle}
-                              color="#FC7006"
+                            <Box
+                              key={1}
+                              w="28px"
+                              h="28px"
+                              bgColor="transparent"
+                              bgImg="/icons/AddCircle.png"
+                              bgSize="28px 28px"
                             />
                           )}
                         </AccordionButton>
                       </h2>
-                      <AccordionPanel pb={4}>{item.data.anwser}</AccordionPanel>
+                      <AccordionPanel
+                        p={0}
+                        pt={{ base: "8px", md: "16px" }}
+                        fontWeight="700"
+                        fontSize={{ base: "16px", md: "20px" }}
+                        lineHeight={{ base: "20px", md: "30px" }}
+                        letterSpacing={1}
+                        color="brandGray.500"
+                      >
+                        {item.data.anwser}
+                      </AccordionPanel>
                     </>
                   )}
                 </AccordionItem>
               ))}
             </Accordion>
           </Box>
-          <Box w="100%">
+          <Box w="100%" px={{ base: "8px", md: 0 }}>
             <CustomButton />
           </Box>
         </VStack>
-      </GridItem>
-    </Grid>
+      </Flex>
+      <AspectRatio
+        w="full"
+        ratio={isMobile ? 1170 / 896 : 1440 / 478}
+        position="relative"
+        mt={{ base: "-232px", md: "-72px" }}
+        zIndex={1}
+      >
+        <Image
+          src={`/${isMobile ? "mobile" : "desktop"}/FooterCloud.png`}
+          alt="faq"
+          fill
+          priority
+        />
+      </AspectRatio>
+    </Flex>
   );
 }
 
@@ -92,30 +155,21 @@ const CustomButton = () => {
   return (
     <Box
       as="button"
-      height="40px"
-      width="100%"
-      lineHeight="1.2"
+      width="full"
       transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
       border="1px"
-      px="8px"
+      px={{ base: "16px", md: "32px" }}
+      py={{ base: "12px", md: "23.5px" }}
       borderRadius="40px"
-      fontSize="14px"
-      fontWeight="semibold"
-      bg="#f5f6f7"
-      borderColor="#F9FAFB"
+      fontWeight="900"
+      fontSize="20px"
+      lineHeight="25px"
+      letterSpacing={0.5}
+      bg="brandGray.50"
+      borderColor="white"
       color="#4b4f56"
-      _hover={{ bg: "#ebedf0" }}
-      _active={{
-        bg: "#dddfe2",
-        transform: "scale(0.98)",
-        borderColor: "#bec3c9",
-      }}
-      _focus={{
-        boxShadow:
-          "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
-      }}
     >
-      <Flex justifyContent="space-between" px={2}>
+      <Flex justifyContent="space-between">
         <Text color="brandPurple.600">Phụ huynh góp ý</Text>
         <Icon as={FaArrowRight} color="brandPurple.600" />
       </Flex>
