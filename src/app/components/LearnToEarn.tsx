@@ -143,6 +143,7 @@ export default function LearnToEarn({ items }: Props) {
                 src={`/${folder}/Illustration1.png`}
                 alt="Phương pháp và chương trình bài bản"
                 fill
+                sizes="(max-width: 768px) 100vw"
                 priority
               />
             </AspectRatio>
@@ -270,6 +271,7 @@ export default function LearnToEarn({ items }: Props) {
                 src={`/${folder}/Illustration2.png`}
                 alt="Ứng dụng công nghệ hàng đầu"
                 fill
+                sizes="(max-width: 768px) 100vw"
                 priority
               />
             </AspectRatio>

@@ -154,7 +154,13 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
       onClick={() => {
         if (!href) return;
         const signupElement = document.getElementById(href);
-        if (signupElement) signupElement.scrollIntoView({ behavior: "smooth" });
+        if (signupElement) {
+          const desiredScrollPosition = signupElement.offsetTop - 100;
+          window.scrollTo({
+            top: desiredScrollPosition,
+            behavior: "smooth",
+          });
+        }
       }}
     >
       {label}
@@ -195,7 +201,11 @@ const MobileNav = (props: MobileNavProps) => {
               </Flex>
               <Stack pt="24px" spacing="32px">
                 {NAV_ITEMS.map((navItem) => (
-                  <MobileNavItem key={navItem.label} {...navItem} />
+                  <MobileNavItem
+                    key={navItem.label}
+                    {...navItem}
+                    onClick={onToggle}
+                  />
                 ))}
               </Stack>
             </Stack>
@@ -207,23 +217,39 @@ const MobileNav = (props: MobileNavProps) => {
     </Drawer>
   );
 };
-const MobileNavItem = ({ label, href }: NavItem) => {
+
+interface MobileNavItemProps extends NavItem {
+  onClick: () => void;
+}
+
+const MobileNavItem = ({ label, href, onClick }: MobileNavItemProps) => {
   return (
-    <Box
-      fontWeight="900"
-      fontSize="32px"
-      lineHeight="40px"
-      letterSpacing={0.5}
-      _hover={{ textDecoration: "none" }}
-    >
-      <Link
-        href={`#${href ?? ""}`}
-        as={NextLink}
-        _hover={{ textDecoration: "none" }}
+      <Text
+        p={0}
+        fontWeight="900"
+        fontSize="32px"
+        lineHeight="40px"
+        letterSpacing={0.5}
+        color="white"
+        alignItems="left"
+        bg="transparent"
+        _hover={{ color: "brandOrange.500" }}
+        _active={{ bg: "transparent" }}
+        onClick={() => {
+          if (!href) return;
+          const signupElement = document.getElementById(href);
+          if (signupElement) {
+            const desiredScrollPosition = signupElement.offsetTop - 100;
+            window.scrollTo({
+              top: desiredScrollPosition,
+              behavior: "smooth",
+            });
+          }
+          onClick();
+        }}
       >
         {label}
-      </Link>
-    </Box>
+      </Text>
   );
 };
 
