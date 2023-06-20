@@ -56,7 +56,7 @@ export default function Faq(props: Props) {
           mb={{ base: "30px", md: 0 }}
         >
           <Box w="100%" p={{ base: "24px", md: "34px" }} pb={0}>
-            <Accordion>
+            <Accordion allowToggle>
               <Text
                 fontWeight="900"
                 fontSize={{ base: "32px", md: "40px" }}
@@ -78,7 +78,11 @@ export default function Faq(props: Props) {
                   {({ isExpanded }) => (
                     <>
                       <h2>
-                        <AccordionButton p={0}>
+                        <AccordionButton
+                          p={0}
+                          _active={{ bg: "white" }}
+                          _hover={{ bg: "white" }}
+                        >
                           <Box as="span" flex="1" textAlign="left">
                             <Heading
                               fontWeight="900"
