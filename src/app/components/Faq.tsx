@@ -34,7 +34,7 @@ export default function Faq(props: Props) {
   const folder = isMobile ? "mobile" : "desktop";
 
   return (
-    <Flex id="faq" mt="100px" direction="column">
+    <Flex id="faq" direction="column">
       <Flex w="full" direction={{ base: "column-reverse", md: "row" }}>
         <Flex
           w={{ base: "443.4px", md: "50%" }}
@@ -46,7 +46,7 @@ export default function Faq(props: Props) {
             ratio={1617 / 2015}
             position="relative"
           >
-            <Image src="/FAQ.png" alt="faq" fill priority />
+            <Image src="/FAQ.png" alt="faq" fill priority sizes="50vw" />
           </AspectRatio>
         </Flex>
         <VStack
