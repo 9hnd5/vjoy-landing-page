@@ -25,7 +25,33 @@ export default function LearnToEarn({ items }: Props) {
   const [isMobile] = useMediaQuery("(max-width: 480px)");
   const folder = isMobile ? "mobile" : "desktop";
   return (
-    <Flex w="full" direction="column" align="center" mt="340px">
+    <Flex
+      w="full"
+      direction="column"
+      align="center"
+      mt="340px"
+      position="relative"
+    >
+      <Box
+        w={{ base: "104px", md: "243px"}}
+        h={{ base: "197px", md: "300px"}}
+        bgColor="transparent"
+        bgImg={`/${folder}/Planet2.png`}
+        bgSize={{ base: "104px 197px", md: "243px 300px"}}
+        position="absolute"
+        left="0"
+        top={{ base: "-2070", md: "-180" }}
+      />
+      <Box
+        w={{ base: "201px", md: "462px"}}
+        h={{ base: "305px", md: "462px"}}
+        bgColor="transparent"
+        bgImg={`/${folder}/Planet3.png`}
+        bgSize={{ base: "201px 305px", md: "462px 462px"}}
+        position="absolute"
+        right="0"
+        top={{ base: "-300", md: "-550" }}
+      />
       <Flex w="full" maxW="1200px" direction="column" zIndex={1}>
         <VStack
           w="full"
