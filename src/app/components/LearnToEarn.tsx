@@ -107,7 +107,7 @@ export default function LearnToEarn({ items }: Props) {
         <Image src="/Cloud.png" alt="cloud" fill priority />
       </AspectRatio>
 
-      <Box w="full" position="relative" zIndex={1}>
+      <Box w="full" position="relative" zIndex={2}>
         <AspectRatio
           w="full"
           ratio={{ base: 1170 / 3120, md: 4125 / 2115 }}
