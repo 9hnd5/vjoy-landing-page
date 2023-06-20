@@ -88,7 +88,7 @@ const DesktopNav = (props: DesktopNavProps) => {
   return (
     <Flex
       justify="space-around"
-      bg="brandPurple.600"
+      bg="brandPurple.700"
       position="sticky"
       top={0}
       zIndex={999}
