@@ -35,7 +35,7 @@ export default function LearnToEarn({ items }: Props) {
           textAlign="center"
         >
           <Image
-            key={"image"}
+            key={1}
             width={750}
             height={192}
             alt="Play to earn"
@@ -43,7 +43,7 @@ export default function LearnToEarn({ items }: Props) {
             priority
           />
           <Text
-            key={"text"}
+            key={2}
             fontWeight="900"
             fontSize={{ base: "24px", md: "32px" }}
             lineHeight="40px"
@@ -52,7 +52,7 @@ export default function LearnToEarn({ items }: Props) {
             Gặt hái niềm vui, đón nhận thành quả
           </Text>
           <Text
-            key={"text"}
+            key={3}
             color={"brandGray.500"}
             fontWeight="700"
             fontSize="20px"
@@ -130,6 +130,7 @@ export default function LearnToEarn({ items }: Props) {
             pr={{ base: "24px", md: "150px" }}
           >
             <Text
+              key={1}
               fontWeight="900"
               fontSize={{ base: "32px", md: "40px" }}
               lineHeight={{ base: "40px", md: "50px" }}
@@ -142,6 +143,7 @@ export default function LearnToEarn({ items }: Props) {
               </Box>
             </Text>
             <Text
+              key={2}
               color="brandGray.500"
               fontWeight="700"
               fontSize="20px"
@@ -152,6 +154,7 @@ export default function LearnToEarn({ items }: Props) {
               với đời sống hằng ngày (Game-based learning & Task-based learning)
             </Text>
             <Text
+              key={3}
               color="brandGray.500"
               fontWeight="700"
               fontSize="20px"
@@ -202,6 +205,7 @@ export default function LearnToEarn({ items }: Props) {
             pt={{ base: "60px", md: "150px" }}
           >
             <Text
+              key={1}
               fontWeight="900"
               fontSize={{ base: "32px", md: "40px" }}
               lineHeight={{ base: "40px", md: "50px" }}
@@ -215,6 +219,7 @@ export default function LearnToEarn({ items }: Props) {
               <Box as="span">{"đem lại kết quả học tập cao nhất"}</Box>
             </Text>
             <Text
+              key={2}
               color="brandGray.500"
               fontWeight="700"
               fontSize="20px"
@@ -266,9 +271,17 @@ const Item = (props: ItemProps) => {
         align="center"
         direction={{ base: "column-reverse", md: "column" }}
       >
-        <Image width={270} height={259} alt="Logo" src={icon} priority />
-        <VStack w="full" spacing="12px" align="center">
+        <Image
+          key={1}
+          width={270}
+          height={259}
+          alt="Logo"
+          src={icon}
+          priority
+        />
+        <VStack key={2} w="full" spacing="12px" align="center">
           <Text
+            key={1}
             fontWeight="900"
             fontSize="24px"
             lineHeight="30px"
@@ -278,6 +291,7 @@ const Item = (props: ItemProps) => {
             {title}
           </Text>
           <Text
+            key={2}
             color="brandGray.500"
             fontWeight="700"
             fontSize="20px"
