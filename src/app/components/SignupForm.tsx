@@ -77,8 +77,8 @@ export default function SignupForm() {
       direction={{ base: "column", sm: "row" }}
       height={{ base: 1030, sm: 678 }}
       pos={{ base: "relative" }}
-      mt={{ base: -120, sm: -300 }}
-      px={{ base: 0, sm: 12 }}
+      mt={{ base: -140, sm: -350 }}
+      px={{ base: 0, sm: "87px" }}
       py={{ base: 12 }}
       zIndex={{ base: "inherit", sm: 2 }}
     >
@@ -105,7 +105,7 @@ export default function SignupForm() {
         py={{ base: 6, sm: 6 }}
         roundedRight={{ base: 40, sm: 40 }}
         roundedLeft={{ base: 40, sm: 0 }}
-        top={{ base: 450, sm: 0 }}
+        top={{ base: 400, sm: 0 }}
         right={{ base: 6, sm: 0 }}
         left={{ base: 6, sm: 0 }}
         pos={{ base: "absolute", sm: "unset" }}
