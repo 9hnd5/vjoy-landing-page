@@ -6,13 +6,14 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
+  FormHelperText,
   Input,
   InputGroup,
   InputLeftElement,
   Stack,
   Text,
   VStack,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -75,7 +76,7 @@ export default function SignupForm() {
       spacing={0}
       width="100%"
       direction={{ base: "column", sm: "row" }}
-      height={{ base: 1030, sm: 678 }}
+      height={{ base: 1120, sm: 678 }}
       pos={{ base: "relative" }}
       mt={{ base: -120, sm: -300 }}
       px={{ base: 0, sm: 12 }}
@@ -96,7 +97,7 @@ export default function SignupForm() {
         />
       </Box>
       <VStack
-        spacing={5}
+        spacing={2}
         background="rgba(255, 255, 255, 0.8)"
         backdropFilter="blur(30px)"
         shadow="0px 4px 60px rgba(75, 28, 174, 0.15)"
@@ -134,12 +135,20 @@ export default function SignupForm() {
               {...register("parent", { required: "Không được bỏ trống" })}
             />
           </InputGroup>
-          <FormErrorMessage>
-            {errors.parent && errors.parent.message}
-          </FormErrorMessage>
+          {!errors.parent ? (
+            <FormHelperText color="white">a</FormHelperText>
+          ) : (
+            <FormErrorMessage>
+              {errors.parent && errors.parent.message}
+            </FormErrorMessage>
+          )}
         </FormControl>
 
-        <FormControl isRequired isInvalid={!!errors.phone}>
+        <FormControl
+          isRequired
+          isInvalid={!!errors.phone}
+          style={{ marginTop: "0px !important" }}
+        >
           <InputGroup>
             <InputLeftElement pointerEvents="none" h="80px">
               <PhoneIcon color="brandGray.400" />
@@ -153,12 +162,20 @@ export default function SignupForm() {
               {...register("phone", { required: "Không được bỏ trống" })}
             />
           </InputGroup>
-          <FormErrorMessage>
-            {errors.phone && errors.phone.message}
-          </FormErrorMessage>
+          {!errors.phone ? (
+            <FormHelperText color="white">a</FormHelperText>
+          ) : (
+            <FormErrorMessage>
+              {errors.phone && errors.phone.message}
+            </FormErrorMessage>
+          )}
         </FormControl>
 
-        <FormControl isRequired isInvalid={!!errors.location}>
+        <FormControl
+          isRequired
+          isInvalid={!!errors.location}
+          style={{ marginTop: "0px !important" }}
+        >
           <InputGroup>
             <InputLeftElement pointerEvents="none" h="80px">
               <Icon as={HiLocationMarker} color="brandGray.400" />
@@ -172,9 +189,13 @@ export default function SignupForm() {
               {...register("location", { required: "Không được bỏ trống" })}
             />
           </InputGroup>
-          <FormErrorMessage>
-            {errors.location && errors.location.message}
-          </FormErrorMessage>
+          {!errors.location ? (
+            <FormHelperText color="white">a</FormHelperText>
+          ) : (
+            <FormErrorMessage>
+              {errors.location && errors.location.message}
+            </FormErrorMessage>
+          )}
         </FormControl>
 
         <Button
