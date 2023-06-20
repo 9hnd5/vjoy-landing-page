@@ -171,7 +171,14 @@ const CustomButton = () => {
     >
       <Flex justifyContent="space-between">
         <Text color="brandPurple.600">Phụ huynh góp ý</Text>
-        <Icon as={FaArrowRight} color="brandPurple.600" />
+        <Box
+          key={1}
+          w="28px"
+          h="28px"
+          bgColor="transparent"
+          bgImg="/icons/ArrowRight.png"
+          bgSize="28px 28px"
+        />
       </Flex>
     </Box>
   );

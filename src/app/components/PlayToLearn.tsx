@@ -48,8 +48,18 @@ export default function PlayToLearn({ items }: Props) {
       setActiveIndex(newIndex),
   };
   return (
-    <Flex w="full" justify="space-around" mt="140px">
-      <Flex w="full" direction="column" px={{ base: "24px", sm: 0 }}>
+    <Flex w="full" justify="space-around" mt="140px" position="relative" zIndex={3}>
+      <Box
+        w={{ base: "119px", md: "324px"}}
+        h={{ base: "230px", md: "437px"}}
+        bgColor="transparent"
+        bgImg={`/${folder}/Planet1.png`}
+        bgSize={{ base: "119px 230px", md: "324px 437px"}}
+        position="absolute"
+        left="0"
+        top={{ base: "-100", md: "0" }}
+      />
+      <Flex w="full" direction="column" px={{ base: "24px", sm: 0 }} zIndex={2}>
         <VStack w="full" spacing="24px" align="center" textAlign="center">
           <Image
             key={1}
