@@ -8,14 +8,12 @@ import {
   Box,
   Flex,
   Heading,
-  Icon,
   Text,
   VStack,
-  useMediaQuery,
+  useMediaQuery
 } from "@chakra-ui/react";
 import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
 import { nunito } from "../fonts";
 
 export const revalidate = 0;
@@ -96,7 +94,6 @@ export default function Faq(props: Props) {
                           </Box>
                           {isExpanded ? (
                             <Box
-                              key={1}
                               w="28px"
                               h="28px"
                               bgColor="transparent"
@@ -105,7 +102,6 @@ export default function Faq(props: Props) {
                             />
                           ) : (
                             <Box
-                              key={1}
                               w="28px"
                               h="28px"
                               bgColor="transparent"
@@ -176,7 +172,6 @@ const CustomButton = () => {
       <Flex justifyContent="space-between">
         <Text color="brandPurple.600">Phụ huynh góp ý</Text>
         <Box
-          key={1}
           w="28px"
           h="28px"
           bgColor="transparent"

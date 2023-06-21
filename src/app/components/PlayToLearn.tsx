@@ -4,7 +4,6 @@ import {
   AspectRatio,
   Box,
   Flex,
-  HStack,
   Stack,
   Text,
   VStack,
@@ -48,13 +47,19 @@ export default function PlayToLearn({ items }: Props) {
       setActiveIndex(newIndex),
   };
   return (
-    <Flex w="full" justify="space-around" mt="140px" position="relative" zIndex={3}>
+    <Flex
+      w="full"
+      justify="space-around"
+      mt="140px"
+      position="relative"
+      zIndex={3}
+    >
       <Box
-        w={{ base: "119px", md: "324px"}}
-        h={{ base: "230px", md: "437px"}}
+        w={{ base: "119px", md: "324px" }}
+        h={{ base: "230px", md: "437px" }}
         bgColor="transparent"
         bgImg={`/${folder}/Planet1.png`}
-        bgSize={{ base: "119px 230px", md: "324px 437px"}}
+        bgSize={{ base: "119px 230px", md: "324px 437px" }}
         position="absolute"
         left="0"
         top={{ base: "-100", md: "0" }}
@@ -81,27 +86,29 @@ export default function PlayToLearn({ items }: Props) {
             {`Con vui học${isMobile ? " và" : ","} sáng tạo không giới hạn`}
           </Text>
         </VStack>
-        {isMobile && (
-          <Box w="full" mt="64px">
-            {items.map((item, index) => (
-              <Item key={index} index={index} isMobile={isMobile} {...item} />
-            ))}
-          </Box>
-        )}
+        <Box id="about">
+          {isMobile && (
+            <Box w="full" mt="64px">
+              {items.map((item, index) => (
+                <Item key={index} index={index} isMobile={isMobile} {...item} />
+              ))}
+            </Box>
+          )}
 
-        {!isMobile && (
-          <Box as={Slider} {...settings} mt="102px">
-            {items.map((item, index) => (
-              <Item
-                key={index}
-                index={index}
-                isMobile={isMobile}
-                activeIndex={activeIndex}
-                {...item}
-              />
-            ))}
-          </Box>
-        )}
+          {!isMobile && (
+            <Box as={Slider} {...settings} mt="102px">
+              {items.map((item, index) => (
+                <Item
+                  key={index}
+                  index={index}
+                  isMobile={isMobile}
+                  activeIndex={activeIndex}
+                  {...item}
+                />
+              ))}
+            </Box>
+          )}
+        </Box>
       </Flex>
     </Flex>
   );
@@ -113,8 +120,16 @@ interface ItemProps extends PlayToLearnItem {
   isMobile: boolean;
 }
 const Item = (props: ItemProps) => {
-  const { index, activeIndex, isMobile, bg, img, title, description, icon } =
-    props;
+  const {
+    index,
+    activeIndex,
+    isMobile,
+    bg,
+    img,
+    title,
+    description,
+    icon,
+  } = props;
   const isActive = index === activeIndex;
   const folder = isMobile ? "mobile" : "desktop";
 
