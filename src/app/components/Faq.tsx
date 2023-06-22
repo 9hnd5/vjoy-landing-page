@@ -8,14 +8,12 @@ import {
   Box,
   Flex,
   Heading,
-  Icon,
   Text,
   VStack,
-  useMediaQuery,
+  useMediaQuery
 } from "@chakra-ui/react";
 import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
 import { nunito } from "../fonts";
 
 export const revalidate = 0;
@@ -56,7 +54,7 @@ export default function Faq(props: Props) {
           mb={{ base: "30px", md: 0 }}
         >
           <Box w="100%" p={{ base: "24px", md: "34px" }} pb={0}>
-            <Accordion>
+            <Accordion allowToggle>
               <Text
                 fontWeight="900"
                 fontSize={{ base: "32px", md: "40px" }}
@@ -78,7 +76,11 @@ export default function Faq(props: Props) {
                   {({ isExpanded }) => (
                     <>
                       <h2>
-                        <AccordionButton p={0}>
+                        <AccordionButton
+                          p={0}
+                          _active={{ bg: "white" }}
+                          _hover={{ bg: "white" }}
+                        >
                           <Box as="span" flex="1" textAlign="left">
                             <Heading
                               fontWeight="900"
@@ -92,7 +94,6 @@ export default function Faq(props: Props) {
                           </Box>
                           {isExpanded ? (
                             <Box
-                              key={1}
                               w="28px"
                               h="28px"
                               bgColor="transparent"
@@ -101,7 +102,6 @@ export default function Faq(props: Props) {
                             />
                           ) : (
                             <Box
-                              key={1}
                               w="28px"
                               h="28px"
                               bgColor="transparent"
@@ -172,7 +172,6 @@ const CustomButton = () => {
       <Flex justifyContent="space-between">
         <Text color="brandPurple.600">Phụ huynh góp ý</Text>
         <Box
-          key={1}
           w="28px"
           h="28px"
           bgColor="transparent"

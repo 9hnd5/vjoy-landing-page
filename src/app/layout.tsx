@@ -125,7 +125,6 @@ const DesktopNav = (props: DesktopNavProps) => {
 
         <Flex display={{ base: "flex", sm: "none" }}>
           <Box
-            key={1}
             w="32px"
             h="32px"
             bgColor="transparent"
@@ -153,13 +152,12 @@ const DesktopNavItem = ({ label, href }: NavItem) => {
       onClick={() => {
         if (!href) return;
         const signupElement = document.getElementById(href);
-        if (signupElement) {
-          const desiredScrollPosition = signupElement.offsetTop - 100;
-          window.scrollTo({
-            top: desiredScrollPosition,
+        if (signupElement)
+          signupElement.scrollIntoView({
             behavior: "smooth",
+            block: "start",
+            inline: "nearest",
           });
-        }
       }}
     >
       {label}
@@ -187,9 +185,8 @@ const MobileNav = (props: MobileNavProps) => {
         <DrawerBody bg="brandPurple.700">
           <Flex direction="column" h="full">
             <Stack color="white">
-              <Flex justifyContent="flex-end" pt={2}>
+              <Flex key="1" justifyContent="flex-end" pt={2}>
                 <Box
-                  key={1}
                   w="32px"
                   h="32px"
                   bgColor="transparent"
@@ -198,7 +195,7 @@ const MobileNav = (props: MobileNavProps) => {
                   onClick={onToggle}
                 />
               </Flex>
-              <Stack pt="24px" spacing="32px">
+              <Stack key="2" pt="24px" spacing="32px">
                 {NAV_ITEMS.map((navItem) => (
                   <MobileNavItem
                     key={navItem.label}
@@ -237,13 +234,12 @@ const MobileNavItem = ({ label, href, onClick }: MobileNavItemProps) => {
       onClick={() => {
         if (!href) return;
         const signupElement = document.getElementById(href);
-        if (signupElement) {
-          const desiredScrollPosition = signupElement.offsetTop - 100;
-          window.scrollTo({
-            top: desiredScrollPosition,
+        if (signupElement)
+          signupElement.scrollIntoView({
             behavior: "smooth",
+            block: "start",
+            inline: "nearest",
           });
-        }
         onClick();
       }}
     >
@@ -261,6 +257,7 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Giới thiệu",
+    href: "about",
   },
   {
     label: "Trải nghiệm ngay",

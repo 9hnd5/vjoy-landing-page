@@ -1,15 +1,10 @@
 "use client";
-import { Link as NextLink } from "@chakra-ui/next-js";
 import {
   AspectRatio,
   Button,
-  Center,
   Flex,
-  Heading,
-  Link,
-  Text,
   VStack,
-  useMediaQuery,
+  useMediaQuery
 } from "@chakra-ui/react";
 import Image from "next/image";
 
@@ -47,7 +42,7 @@ export default function Hero() {
         bottom={{ base: "56%", md: "14%" }}
       >
         <Button
-          key={1}
+          key="1"
           w={{ base: "341px", md: "full" }}
           h="72px"
           pt="17px"
@@ -64,8 +59,13 @@ export default function Hero() {
           letterSpacing="0.5px"
           onClick={() => {
             const signupElement = document.getElementById("signup");
-            if (signupElement)
-              signupElement.scrollIntoView({ behavior: "smooth" });
+            if (signupElement) {
+              const desiredScrollPosition = signupElement.offsetTop - 50;
+              window.scrollTo({
+                top: desiredScrollPosition,
+                behavior: "smooth",
+              });
+            }
           }}
           _hover={{
             bgImg: "/buttons/White_Hover.png",
@@ -80,22 +80,36 @@ export default function Hero() {
         >
           Trải Ngiệm Ngay!
         </Button>
-        <Center
-          key={2}
+        <Button
+          key="2"
           w="100%"
           h="64px"
-          pt="13px"
-          pb="21px"
+          bgColor="transparent"
+          rounded="40px"
+          overflow={"hidden"}
           color="white"
           fontWeight="900"
           fontSize="24px"
           lineHeight="30px"
-          letterSpacing="0.5px"
+          letterSpacing={0.5}
+          _hover={{
+            bgColor: "transparent",
+          }}
+          _active={{
+            bgColor: "transparent",
+          }}
+          onClick={() => {
+            const signupElement = document.getElementById("about");
+            if (signupElement)
+              signupElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+              });
+          }}
         >
-          <Link href="#" as={NextLink} _hover={{ textDecoration: "none" }}>
-            Tìm hiểu thêm
-          </Link>
-        </Center>
+          Tìm hiểu thêm
+        </Button>
       </VStack>
       {isMobile && (
         <>

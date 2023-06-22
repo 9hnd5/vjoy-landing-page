@@ -263,7 +263,7 @@ export default function LearnToEarn({ items }: Props) {
               w={{ base: "full", md: "75%" }}
               ratio={1.18}
               ml="auto"
-              mt={{ base: "100px", md: 0 }}
+              mt={{ base: "70px", md: 0 }}
               mr="50px"
               position="relative"
             >
