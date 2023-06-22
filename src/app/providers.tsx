@@ -6,6 +6,7 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { nunito } from "./fonts";
 
 const { ToastContainer, toast } = createStandaloneToast();
 
@@ -76,7 +77,17 @@ const colors = {
   },
 };
 
-export const theme = extendTheme({ colors });
+export const theme = extendTheme({
+  colors,
+  fonts: {
+    heading: nunito.style.fontFamily,
+    body: nunito.style.fontFamily,
+  },
+  config: {
+    cssVarPrefix: "vjoy",
+  },
+});
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>

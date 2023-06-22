@@ -1,5 +1,4 @@
 "use client";
-
 import * as gtag from "@/utils/gtag";
 import { Link as NextLink } from "@chakra-ui/next-js";
 import {
@@ -23,7 +22,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
-import { nunito, svn_arco } from "./fonts";
+import { svn_arco } from "./fonts";
 import { Providers } from "./providers";
 
 export default function RootLayout({
@@ -44,7 +43,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           strategy="afterInteractive"
@@ -224,32 +223,32 @@ interface MobileNavItemProps extends NavItem {
 
 const MobileNavItem = ({ label, href, onClick }: MobileNavItemProps) => {
   return (
-      <Text
-        p={0}
-        fontWeight="900"
-        fontSize="32px"
-        lineHeight="40px"
-        letterSpacing={0.5}
-        color="white"
-        alignItems="left"
-        bg="transparent"
-        _hover={{ color: "brandOrange.500" }}
-        _active={{ bg: "transparent" }}
-        onClick={() => {
-          if (!href) return;
-          const signupElement = document.getElementById(href);
-          if (signupElement) {
-            const desiredScrollPosition = signupElement.offsetTop - 100;
-            window.scrollTo({
-              top: desiredScrollPosition,
-              behavior: "smooth",
-            });
-          }
-          onClick();
-        }}
-      >
-        {label}
-      </Text>
+    <Text
+      p={0}
+      fontWeight="900"
+      fontSize="32px"
+      lineHeight="40px"
+      letterSpacing={0.5}
+      color="white"
+      alignItems="left"
+      bg="transparent"
+      _hover={{ color: "brandOrange.500" }}
+      _active={{ bg: "transparent" }}
+      onClick={() => {
+        if (!href) return;
+        const signupElement = document.getElementById(href);
+        if (signupElement) {
+          const desiredScrollPosition = signupElement.offsetTop - 100;
+          window.scrollTo({
+            top: desiredScrollPosition,
+            behavior: "smooth",
+          });
+        }
+        onClick();
+      }}
+    >
+      {label}
+    </Text>
   );
 };
 

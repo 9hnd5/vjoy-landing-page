@@ -1,16 +1,16 @@
 "use client";
-
+import { Link as NextLink } from "@chakra-ui/next-js";
 import {
   AspectRatio,
-  Box,
   Button,
   Center,
   Flex,
+  Heading,
   Link,
+  Text,
   VStack,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { Link as NextLink } from "@chakra-ui/next-js";
 import Image from "next/image";
 
 export default function Hero() {
