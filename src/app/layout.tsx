@@ -1,5 +1,4 @@
 "use client";
-
 import * as gtag from "@/utils/gtag";
 import { Link as NextLink } from "@chakra-ui/next-js";
 import {
@@ -23,7 +22,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
-import { nunito, svn_arco } from "./fonts";
+import { svn_arco } from "./fonts";
 import { Providers } from "./providers";
 
 export default function RootLayout({
@@ -44,7 +43,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           strategy="afterInteractive"

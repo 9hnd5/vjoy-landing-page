@@ -1,11 +1,10 @@
 "use client";
-
 import {
   AspectRatio,
   Button,
   Flex,
   VStack,
-  useMediaQuery,
+  useMediaQuery
 } from "@chakra-ui/react";
 import Image from "next/image";
 
